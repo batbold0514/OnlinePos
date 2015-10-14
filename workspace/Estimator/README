@@ -1,0 +1,79 @@
+Initially setup
+---------------
+
+1) Install maven and eclipse
+
+2) Compile Project
+
+ mvn clean install
+
+3) Create eclipse project files for eclipse
+
+  mvn eclipse:eclipse
+
+Development cycle/turnaround unsing Maven and Jetty
+---------------------------------------------------
+
+1) Start Jetty once in another Console
+
+ startJetty.bat
+
+2) Make your changes (e.g. in eclipse)
+
+3) Execute Tests and Build WAR using maven
+
+ mvn clean install
+  
+4) Wait for this log-message in Jetty-Output (new version of WAR is checked each 10 seconds)
+
+ Restart completed at Sun Apr 07 17:03:59 CEST 2013
+
+5) Open this URL in browser
+
+ http://localhost:8080/
+
+[FAQ]
+
+1) How to stop Jetty?
+
+ stopJetty.bat
+
+2) How to test login?
+
+ Include securty/login part of webapp/src/main/webapp/WEB-INF/web.xml
+
+3) How to check DB after failed unit tests?
+
+If the unit-tests fail you can look into the embedded java database using this H2 web console:
+
+Execute 
+ java -jar <pathToMavenRepo>/com/h2database/h2/1.3.152/h2-1.3.152.jar
+
+this open http://192.168.1.104:8082/login.jsp and then connect to the database using this jdbc-url
+
+jdbc:h2:target/testdb
+
+and username "sa" and empty password.
+
+You must change the jdbc url in hibernate.properties before to jdbc:h2:target/testdb though.
+
+4) How to configure another database for production?
+
+ Put the following into server-classpath
+ - JDBC driver
+ - Adapated copy of src/test/resources/hibernate.properties
+
+5) How to add new users and/or roles?
+
+ See web.xml and src/test/resources/jetty-users.properties
+
+6) Why is the first page call so slow?
+
+ Maybe because of hibernate, appserver and h2 initialization
+
+7) How to debug remotely?
+
+ Start jetty and connect to debug port 5005.
+
+Enjoy!
+
