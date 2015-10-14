@@ -1,0 +1,92 @@
+INSERT INTO users VALUES(1, 'MD5:5f4dcc3b5aa765d61d8327deb882cf99', 'admin');
+INSERT INTO users VALUES(2, 'MD5:ee11cbb19052e40b07aac0ca060c23ee', 'user');
+INSERT INTO role VALUES(1, 'admin-role');
+INSERT INTO role VALUES(2, 'user-role');
+INSERT INTO role VALUES(3, 'employee-role');
+INSERT INTO role VALUES(4, 'designer-role');
+INSERT INTO role VALUES(5, 'master-role');
+INSERT INTO users_role VALUES(1, 1);
+INSERT INTO users_role VALUES(2, 2);
+
+INSERT INTO productionstep(id, name) VALUES(1000, 'Stoll сүлжих');
+INSERT INTO productionstep(id, name) VALUES(1001, 'Гар сүлжих');
+INSERT INTO productionstep(id, name) VALUES(1002, 'Кеттел');
+
+insert into producttype(id, prefix, name, active) values(1,'01','сорочка','true');
+insert into producttype(id, prefix, name, active) values(2,'02','кардиган','true');
+insert into producttype(id, prefix, name, active) values(3,'03','майк','true');
+insert into producttype(id, prefix, name, active) values(4,'04','джемпер','true');
+insert into producttype(id, prefix, name, active) values(5,'05','свитер','true');
+insert into producttype(id, prefix, name, active) values(6,'06','малгайтай цамц','true');
+insert into producttype(id, prefix, name, active) values(7,'07','пуловер','true');
+insert into producttype(id, prefix, name, active) values(8,'08','платье','true');
+insert into producttype(id, prefix, name, active) values(9,'09','малгай','true');
+insert into producttype(id, prefix, name, active) values(10,'10','ороолт','true');
+insert into producttype(id, prefix, name, active) values(11,'11','пальто','true');
+insert into producttype(id, prefix, name, active) values(12,'12','нөмрөг','true');
+insert into producttype(id, prefix, name, active) values(13,'13','юбка','true');
+insert into producttype(id, prefix, name, active) values(14,'14','өмд','true');
+insert into producttype(id, prefix, name, active) values(16,'16','бээлий','true');
+insert into producttype(id, prefix, name, active) values(17,'17','цээживч','true');
+
+INSERT INTO customer VALUES(1, 'Дотоод');
+INSERT INTO customer VALUES(2, 'Гадаад');
+
+INSERT INTO stollPrice(id, costprice, sellprice, status) VALUES(1, '980', '5000', 'true');
+
+insert into SIZE(id, sizes) values(1,'XXS');
+insert into SIZE(id, sizes) values(2,'XS');
+insert into SIZE(id, sizes) values(3,'S');
+insert into SIZE(id, sizes) values(4,'M');
+insert into SIZE(id, sizes) values(5,'L');
+insert into SIZE(id, sizes) values(6,'XL');
+insert into SIZE(id, sizes) values(7,'XXL');
+insert into SIZE(id, sizes) values(8,'XXXL');
+insert into SIZE(id, sizes) values(9,'4XL');
+
+
+insert into occupation(name) values('Сүлжигч');
+insert into occupation(name) values('Зах сүлжигч');
+insert into occupation(name) values('Кеттелчин');
+insert into occupation(name) values('Оёдолчин');
+insert into occupation(name) values('Чанар шалгагч');
+insert into occupation(name) values('Угаагч');
+insert into occupation(name) values('Индүүчин');
+insert into occupation(name) values('Хаг хялгас');
+insert into occupation(name) values('Нөхөн засагч');
+insert into occupation(name) values('Мастер');
+insert into occupation(name) values('Бусад');
+insert into SIZE(id, sizes) values(9,'4XL');
+
+insert into bonus (name,value) values('Энгийн',0);
+insert into bonus (name,value) values('Хөөлт',25);
+insert into bonus (name,value) values('Эх',50);
+
+alter table productmodel drop column productModelPrice ;
+alter table productmodel add column sellPrice INTEGER;
+update productmodel set sellprice =0 where sellprice is null;
+alter table productmodel add column percent INTEGER;
+update productmodel set percent = 50 where percent is null;
+
+update trackingsheet ts set bonus_id = (select id from bonus where value = ts.bonus limit 1);
+alter table trackingsheet drop column bonus;
+
+
+insert into role values(3,'master-role');
+insert into role values(4,'employee-role');
+insert into role values(5,'designer-role');
+insert into users values(3,'MD5:eb0a191797624dd3a48fa681d3061212','master');
+insert into users values(4,'MD5:fa5473530e4d1a5a1e1eb53d2fedb10c','employee');
+insert into users values(5,'MD5:230ace927da4bb74817fa22adc663e0a','designer');
+insert into users_role values(3,3);
+insert into users_role values(4,4);
+insert into users_role values(5,5);
+
+insert into material(description ,prefix) values('ноолуур','00');
+insert into material(description ,prefix) values('ноос','0N');
+
+insert into colourspercent (percent) value(100);
+
+alter table employee add code varchar(225);
+update employee set code = '' where code is null;
+

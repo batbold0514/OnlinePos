@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/content/inc/BaseLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/content/inc/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/content/inc/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/content/inc/footer.jsp" />
+	</definition>
+	<definition name="/users-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Users List" />
+		<put-attribute name="body" value="/WEB-INF/content/users-list.jsp" />
+	</definition>
+	<definition name="/licence.tiles" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/content/licence.jsp" />
+	</definition>
+	<definition name="/employee.tiles" extends="baseLayout">
+		<put-attribute name="title" value="employee-list" />
+		<put-attribute name="body" value="/WEB-INF/content/employee.jsp" />
+	</definition>
+	<definition name="/employee-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="employee-list" />
+		<put-attribute name="body" value="/WEB-INF/content/employee-list.jsp" />
+	</definition>
+	<definition name="/productionStep-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Production Step List" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productionStep-list.jsp" />
+	</definition>
+	<definition name="/productionStep.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Production Step" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productionStep.jsp" />
+	</definition>
+	<definition name="/productionStep-edit.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Production Step Edit" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productionStep-edit.jsp" />
+	</definition>
+	<definition name="/productModel.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Product Model" />
+		<put-attribute name="body" value="/WEB-INF/content/productModel.jsp" />
+	</definition>
+	<definition name="/productModel-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Product Model List" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productModel-list.jsp" />
+	</definition>
+	<definition name="/productModel-change.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Product Model" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productModel-change.jsp" />
+	</definition>
+	<definition name="/trackingSheet.tiles" extends="baseLayout">
+		<put-attribute name="title" value="TrackingSheet" />
+		<put-attribute name="body" value="/WEB-INF/content/trackingSheet.jsp" />
+	</definition>
+	<definition name="/trackingSheet-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="TrackingSheet" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/trackingSheet-list.jsp" />
+	</definition>
+	<definition name="/trackingSheetShow.tiles" extends="baseLayout">
+		<put-attribute name="title" value="TrackingSheet Show" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/trackingSheet-show.jsp" />
+	</definition>
+	<definition name="/productModel-editPrice.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Product Model edit price" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productModel-editPrice.jsp" />
+	</definition>
+	<definition name="/productModel-edit.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Product Model edit" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productModel-edit.jsp" />
+	</definition>
+	<definition name="/allEmployeeSalaryReport.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Employee Salary Report" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/allEmployeeSalaryReport.jsp" />
+	</definition>
+	<definition name="/reportShow.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Report show" />
+		<put-attribute name="body" value="/WEB-INF/content/reportShow.jsp" />
+	</definition>
+	<definition name="/stoll-price.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Stoll price" />
+		<put-attribute name="body" value="/WEB-INF/content/stoll-price.jsp" />
+	</definition>
+	<definition name="/productTypes.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Product Type List" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/ajax-product-type/productType-list.jsp" />
+	</definition>
+	<definition name="/customer-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Customer List" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/ajax-customer/customer-list.jsp" />
+	</definition>
+	<definition name="/colour-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Colour List" />
+		<put-attribute name="body" value="/WEB-INF/content/colour-list.jsp" />
+	</definition>
+	<definition name="/size-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Size List" />
+		<put-attribute name="body" value="/WEB-INF/content/size-list.jsp" />
+	</definition>
+	<definition name="/colour.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Colour" />
+		<put-attribute name="body" value="/WEB-INF/content/colour.jsp" />
+	</definition>
+	<definition name="/size.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Size" />
+		<put-attribute name="body" value="/WEB-INF/content/size.jsp" />
+	</definition>
+	<definition name="/yarnReport.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Yarn Report" />
+		<put-attribute name="body" value="/WEB-INF/content/yarn-report.jsp" />
+	</definition>
+	<definition name="/trackingSheetShowStickit.tiles" extends="baseLayout">
+		<put-attribute name="title" value="TrackingSheet Show" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/trackingSheet-showStickit.jsp" />
+	</definition>
+	<definition name="/occupation-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Occupation" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/occupation-list.jsp" />
+	</definition>
+	<definition name="/numberAndPriceReport.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Number and Price report" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/numberAndPrice.jsp" />
+	</definition>
+	<definition name="/bonus.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Bonus" />
+		<put-attribute name="body" value="/WEB-INF/content/bonus.jsp" />
+	</definition>
+	<definition name="/bonus-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Bonus" />
+		<put-attribute name="body" value="/WEB-INF/content/bonus-list.jsp" />
+	</definition>
+	<definition name="/model-report.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Model Report" />
+		<put-attribute name="body" value="/WEB-INF/content/model-report.jsp" />
+	</definition>
+	<definition name="/model-report-export.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Model Report" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/model-report-export.jsp" />
+	</definition>
+	<definition name="/material.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Material" />
+		<put-attribute name="body" value="/WEB-INF/content/material.jsp" />
+	</definition>
+	<definition name="/material-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Material" />
+		<put-attribute name="body" value="/WEB-INF/content/material-list.jsp" />
+	</definition>
+	<definition name="/productModel-edit-step.tiles" extends="baseLayout">
+		<put-attribute name="title" value="edit production step" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productModel-edit-step.jsp" />
+	</definition>
+	<definition name="/productModel-edit-step-next.tiles" extends="baseLayout">
+		<put-attribute name="title" value="edit production step" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/productModel-edit-step-next.jsp" />
+	</definition>
+	<definition name="/totalYarnReport.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Yarn Report Total" />
+		<put-attribute name="body"
+			value="/WEB-INF/content/total-yarn-report.jsp" />
+	</definition>
+</tiles-definitions>

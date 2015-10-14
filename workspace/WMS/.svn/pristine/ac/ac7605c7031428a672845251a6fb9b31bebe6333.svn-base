@@ -1,0 +1,15 @@
+jdbcdriver = org.h2.Driver
+url = jdbc:h2:tcp://localhost/C:/TEMP/3sor-db
+username = sa
+password =
+usertable = users
+usertablekey = id
+usertableuserfield = username
+usertablepasswordfield = pwd
+roletable = role
+roletablekey = id
+roletablerolefield = role
+userroletable = users_role
+userroletableuserkey = users_id
+userroletablerolekey = role_id
+cachetime = 300

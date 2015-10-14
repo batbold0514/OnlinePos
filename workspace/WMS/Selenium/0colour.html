@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>0colour</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">0colour</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/admin/usersList</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Өнгө</td>
+	<td></td>
+</tr>
+<!--өнгө нэмэх-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Өнгө нэмэх</td>
+	<td></td>
+</tr>
+<!--хоосон хадгалах-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>Өнгөний код оруулна уу!</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Өнгөний нэр оруулна уу!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=code</td>
+	<td>E150213</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Улаан</td>
+</tr>
+<!--хадгалах-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Улаан</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>E150213</td>
+	<td></td>
+</tr>
+<!--ижил өнгө хадгалах-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Өнгө нэмэх</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=code</td>
+	<td>E150213</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Улаан</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Уг код давхцаж байна</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=code</td>
+	<td>E150212</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Хөх</td>
+</tr>
+<!--хадгалах-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Хөх</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>E150212</td>
+	<td></td>
+</tr>
+<!--засварлах-->
+<tr>
+	<td>doubleClickAndWait</td>
+	<td>//table[@id='mainTable']/tbody/tr[2]/td[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=code</td>
+	<td>E150211</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>E150211</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>E150213</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

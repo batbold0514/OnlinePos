@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>Diagnose</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Diagnose</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/admin/calendar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=ui-accordion-accordion-header-4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=addDiagnosis</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveDiagnosis_code</td>
+	<td>1001</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveDiagnosis_name</td>
+	<td>Karies</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>1001</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>Karies</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=addDiagnosis</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveDiagnosis_code</td>
+	<td>1002</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveDiagnosis_name</td>
+	<td>Paradontose</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>1002</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>Paradontose</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Засварлах</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveDiagnosis_name</td>
+	<td>Caries</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>Caries</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=addDiagnosis</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=save</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

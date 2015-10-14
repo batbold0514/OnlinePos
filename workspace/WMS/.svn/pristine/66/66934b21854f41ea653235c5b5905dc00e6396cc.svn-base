@@ -1,0 +1,405 @@
+/* Sticky footer CSS begin... */
+html, body
+{
+  height: 100%;
+  background-color: #ecf0f1;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+a:link, a:visited, a:hover, a:active
+{
+	text-decoration: none !important;
+}
+
+/* Wrapper for page content to push down footer */
+.wrap
+{
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+.footer
+{
+	height: 60px;
+  	width: 100%;
+   	background-color: #f8f8f8;
+   	border: 1px solid transparent;
+   	border-color: rgb(231, 231, 231);
+   	padding-top: 20px;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.wrap > .container
+{
+  padding: 60px 15px 0;
+}
+
+.container .credit
+{
+  margin: 20px 0;
+}
+
+.footer > .container
+{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+code
+{
+  font-size: 80%;
+}
+/* Sticky footer CSS end! */
+
+/* Support CSS begin... */
+.errorMessage
+{
+	color: #FF0039 !important;
+}
+
+.sorting_asc
+{
+	background-color: #EBFFFF;
+}
+
+.sorting_desc
+{
+	background-color: #EBFFFF;
+}
+
+tr.even
+{
+	background-color: inherit;
+}
+
+tr.odd
+{
+	background-color: inherit;
+}
+
+tr.odd td.sorting_1
+{
+    background-color: inherit;
+}
+
+tr.even td.sorting_1
+{
+    background-color: inherit;
+}
+
+.dataTables_paginate
+{
+	width: 40%;
+}
+
+div.DTTT_container
+{
+	float: left;
+}
+
+.btn-gray
+{
+    color: rgb(255, 255, 255);
+    background-color: rgb(172, 186, 195);
+    border-color: rgb(172, 186, 195);
+}
+.btn-gray:hover, .btn-gray:focus, .btn-gray:active, .btn-gray.active, .open .dropdown-toggle.btn-gray
+{
+    color: rgb(255, 255, 255);
+    background-color: rgb(140, 155, 162);
+    border-color: rgb(130, 145 ,162);
+}
+
+.btn-asphalt
+{
+    color: rgb(255, 255, 255);
+    background-color: rgb(52, 73, 94);
+    border-color: rgb(52, 73, 94);
+}
+.btn-asphalt:hover, .btn-asphalt:focus, .btn-asphalt:active, .btn-asphalt.active, .open .dropdown-toggle.btn-asphalt
+{
+    color: rgb(255, 255, 255);
+    background-color: rgb(44, 62, 80);
+    border-color: rgb(34, 52, 80);
+}
+
+.btn-back
+{
+    color: rgb(52, 152, 219);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #39B3D7 !important;
+}
+.btn-back:hover, .btn-back:focus, .btn-back:active, .btn-back.active, .open .dropdown-toggle.btn-back
+{
+    color: rgb(52, 152, 219);
+    background-color: rgb(240, 240, 240);
+    border: 1px solid #39B3D7 !important;
+}
+
+.btn-select
+{
+    color: #34495e;
+    background-color: #ecf0f1;
+    border: 1px solid #ecf0f1 !important;
+}
+.btn-select:hover, .btn-select:focus, .btn-select:active, .btn-select.active, .open .dropdown-toggle.btn-select
+{
+    color: #2c3e50;
+    background-color: #bdc3c7;
+    border: 1px solid #bdc3c7 !important;
+}
+
+.btn-addon
+{
+    color: #34495e;
+    background-color: #ecf0f1;
+    border: 1px solid #34495e !important;
+}
+.btn-addon:hover, .btn-addon:focus, .btn-addon:active, .btn-addon.active, .open .dropdown-toggle.btn-addon
+{
+    color: #2c3e50;
+    background-color: #bdc3c7;
+    border: 1px solid #2c3e50 !important;
+}
+
+.btn-yellow
+{
+    color: #ffffff;
+    background-color: #f1c40f;
+    border: 1px solid #f1c40f !important;
+}
+.btn-yellow:hover, .btn-yellow:focus, .btn-yellow:active, .btn-yellow.active, .open .dropdown-toggle.btn-yellow
+{
+    color: #ecf0f1;
+    background-color: #f39c12;
+    border: 1px solid #f39c12 !important;
+}
+
+.btn-group
+{
+	border: 1px solid #2c3e50 !important;
+}
+
+.panel-help
+{
+	border-color: #D1D5D8;
+}
+.panel-help > .panel-heading
+{
+	color: rgb(0, 0, 0);
+    background-color: #E8E8E8;
+    border-color: #D1D5D8;
+}
+
+.panel-search
+{
+	border-color: #6ADAFF;
+}
+.panel-search > .panel-heading
+{
+	color: rgb(255, 255, 255);
+    background-color: #6ADAFF;
+    border-color: #6ADAFF;
+}
+
+.panel-input
+{
+	border-color: #76D7C4;
+}
+.panel-input > .panel-heading
+{
+	color: rgb(255, 255, 255);
+    background-color: #76D7C4;
+    border-color: #76D7C4;
+}
+
+.panel-yellow
+{
+	border-color: #f1c40f;
+}
+.panel-yellow > .panel-heading
+{
+	color: rgb(255, 255, 255);
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+}
+
+.panel-green
+{
+	border-color: #85C99E;
+}
+.panel-green > .panel-heading
+{
+	color: #FFF;
+    background-color: #85C99E;
+    border-color: #85C99E;
+}
+
+.panel-select
+{
+	border-color: #34495e;
+}
+.panel-select > .panel-heading
+{
+	color: #34495e;
+    background-color: #ecf0f1;
+    border-color: #34495e;
+}
+
+.navbar-normal
+{
+    background-color: #f8f8f8;
+    border: 1px solid transparent;
+    border-color: rgb(231, 231, 231);
+}
+.navbar-normal .navbar-nav > li > a
+{
+    color: rgb(51, 51, 51);
+}
+.navbar-normal .navbar-toggle
+{
+    border-color: transparent;
+}
+.navbar-normal .navbar-toggle .icon-bar
+{
+    background-color: rgb(51, 51, 51);
+}
+.navbar-normal .navbar-toggle:hover, .navbar-normal .navbar-toggle:focus
+{
+    background-color: #e7e7e7;
+}
+.navbar-normal .navbar-nav > li > a:hover, .navbar-normal .navbar-nav > li > a:focus
+{
+    color: rgb(51, 51, 51);
+    background-color: #f0f0f0;
+}
+.navbar-normal .navbar-nav > .active > a, .navbar-normal .navbar-nav > .active > a:hover, .navbar-normal .navbar-nav > .active > a:focus
+{
+    color: rgb(51, 51, 51);
+    background-color: #f0f0f0;
+}
+
+.wrap > .container
+{
+	padding-top: 0px !important;
+}
+
+#menu div > div > h4 > a[href*="#menu"]:hover, #menu div > div > h4 > a[href*="#menu"]:focus
+{
+    text-decoration: none;
+}
+
+#menu .panel-primary > div > h4 > a > .badge
+{
+    color: rgb(0, 127, 255);
+    background-color: rgb(255, 255, 255);
+}
+
+#menu .panel-default > div > h4 > a >.badge
+{
+    color: rgb(255, 255, 255);
+    background-color: #333333;
+}
+
+.default
+{
+	height: 30px !important;
+}
+
+.questions div > div > h4 > a:hover, .questions div > div > h4 > a:focus
+{
+    text-decoration: none;
+}
+
+.applyBtn
+{
+	margin-left: 5px !important;
+}
+
+/* bh - Batkhuu's CSS begin... */
+.bh-logo-a
+{
+	float: none;
+}
+
+.bh-logo-img
+{
+	width: 50px;
+}
+
+.bh-header-font
+{
+	font-size: 25px;
+}
+
+.bh-menu-footer
+{
+	padding-bottom: 5px;
+}
+
+.bh-img-addon
+{
+	padding: 10px 16px !important;
+}
+
+.bh-img-icon
+{
+	width: 25px;
+}
+
+.bh-table-scroll
+{
+	width: 100%;
+	margin-bottom: 15.75px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	border: 1px solid rgb(221, 221, 221);
+}
+
+.bh-image-center
+{
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.bh-contact-google-map
+{
+	width: 100%;
+	height: 300px;
+}
+
+.bh-import-label
+{
+	padding-top: 0px !important;
+}
+
+.bh-color-red
+{
+	color: red !important;
+}
+/* bh - Batkhuu's CSS end! */
+
+/*Dorjsuren*/
+.main-margin
+{
+	margin-left: 3%;
+	margin-right: 3%;
+}
+.customer{
+	width: 100%;
+	text-align: center; 
+	font-size: 30px !important;
+}
+.printInvoice{
+	margin-left: 100px;
+	margin-right: 100px;
+}
+/* Support CSS end! */

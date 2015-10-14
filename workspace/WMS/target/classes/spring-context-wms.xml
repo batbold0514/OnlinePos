@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="annotatedClasses">
+			<list>
+				<value>mn.threesor.wms.model.Users</value>
+				<value>mn.threesor.wms.model.Role</value>
+				<value>mn.threesor.wms.model.ProductionStep</value>
+				<value>mn.threesor.wms.model.Employee</value>
+				<value>mn.threesor.wms.model.Article</value>
+				<value>mn.threesor.wms.model.InputArticle</value>
+				<value>mn.threesor.wms.model.OutputArticle</value>
+				<value>mn.threesor.wms.model.Category</value>
+				<value>mn.threesor.wms.model.Colour</value>
+				<value>mn.threesor.wms.model.Size</value>
+				<value>mn.threesor.wms.model.LocationWms</value>
+				<value>mn.threesor.wms.model.Occupation</value>
+				<value>mn.threesor.wms.model.Measure</value>
+				<value>mn.threesor.wms.model.Customer</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		autowire="byName" />
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<bean id="sessionProvider" class="mn.threesor.wms.helper.SessionProvider"
+		autowire="byName" />
+	<bean id="usersService" class="mn.threesor.wms.service.UsersService"
+		autowire="byName" />
+	<bean id="roleService" class="mn.threesor.wms.service.RoleService"
+		autowire="byName" />
+	<bean id="psService" class="mn.threesor.wms.service.ProductionStepService"
+		autowire="byName" />
+	<bean id="employeeService" class="mn.threesor.wms.service.EmployeeService"
+		autowire="byName" />
+	<bean id="articleService" class="mn.threesor.wms.service.ArticleService"
+		autowire="byName" />
+	<bean id="inputArticleService" class="mn.threesor.wms.service.InputArticleService"
+		autowire="byName" />
+	<bean id="outputArticleService" class="mn.threesor.wms.service.OutputArticleService"
+		autowire="byName" />
+	<bean id="categoryService" class="mn.threesor.wms.service.CategoryService"
+		autowire="byName" />
+	<!-- <bean id="sessionInterceptor" class="mn.chinbat.interceptor.SessionInterceptor" 
+		autowire="byName"/> -->
+	<bean id="colourService" class="mn.threesor.wms.service.ColourService"
+		autowire="byName" />
+	<bean id="sizeService" class="mn.threesor.wms.service.SizeService"
+		autowire="byName" />
+	<bean id="locationWmsService" class="mn.threesor.wms.service.LocationWmsService"
+		autowire="byName" />
+	<bean id="occupationService" class="mn.threesor.wms.service.OccupationService"
+		autowire="byName" />
+	<bean id="measureService" class="mn.threesor.wms.service.MeasureService"
+		autowire="byName" />
+	<bean id="customerService" class="mn.threesor.wms.service.CustomerService"
+		autowire="byName" />
+</beans>

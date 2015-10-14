@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>11 ProductModelTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">11 ProductModelTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/admin/productModels</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=ui-accordion-accordion-header-1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=focus</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=focus</td>
+	<td>label=M</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=saveProductModel_subGauge</td>
+	<td>label=07</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=saveProductModel_subProductTypeString</td>
+	<td>label=10 Өмд</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_stoll</td>
+	<td>1.0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_percent</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_chordPrice</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_unitChordPrice</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_aidPrice</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>doubleClick</td>
+	<td>//form[@id='saveProductModel']/table/tbody/tr[14]/td[2]/div/div[2]/ul/li[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_sellPrice</td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=focus</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>00M-07-10-001</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='button']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Загвар оруулах</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=focus</td>
+	<td>label=M</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=saveProductModel_subMaterial0N</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=saveProductModel_subGauge</td>
+	<td>label=05</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=saveProductModel_subProductTypeString</td>
+	<td>label=10 Өмд</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_stoll</td>
+	<td>1.0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_percent</td>
+	<td>500</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_chordPrice</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_unitChordPrice</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_aidPrice</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>doubleClick</td>
+	<td>//form[@id='saveProductModel']/table/tbody/tr[14]/td[2]/div/div[2]/ul/li[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_sellPrice</td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=saveProductModel_description</td>
+	<td>xaxa</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=focus</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='button']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=focus</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>Категори сонгоно уу?</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>Төрөл сонгоно уу?</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>Гейж сонгоно уу?</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>эерэг Тоо оруулна уу</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>Дамжлага сонгоно уу</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=back</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Засварлах</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=editProductModel_subMaterial0N</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>0NM-07-10-001</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td></td>
+	<td>0NM-05-10-001</td>
+</tr>
+</tbody></table>
+</body>
+</html>

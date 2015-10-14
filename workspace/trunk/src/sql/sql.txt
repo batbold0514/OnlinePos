@@ -1,0 +1,32 @@
+/* Users */
+insert into users values (1,'MD5:5f4dcc3b5aa765d61d8327deb882cf99', 'admin' );
+insert into role values (1, 'admin-role');
+insert into role values (2, 'user-role');
+insert into users_role values (1,1);
+
+/* Alter for patient.cardnumber */
+ALTER TABLE PATIENT
+ADD CARDNUMBER VARCHAR(255)
+
+/* Alter for doctorsession.cardnumber */
+ALTER TABLE DOCTORSESSION
+ADD SESSIONNOTE VARCHAR(1024)
+
+alter table payment modify column date TIMESTAMP(23, 10);
+alter table sessionpayment modify column lastactiondate TIMESTAMP(23, 10);
+alter table doctorsession modify column date TIMESTAMP(23, 10);
+
+update doctorsession set date = date + 0.00001 ;
+update payment set date = date + 0.00001;
+update sessionpayment set lastactiondate = lastactiondate + 0.00001;
+
+
+alter table appointment add Sp_Deference integer;
+update appointment set Sp_Deference = 0;
+
+-----DEGFIM-d hiigdeegui SQL-uud ---------------------
+update sessionpayment set deference  = deference *(-1);
+update appointment set Sp_Deference = Sp_Deference *(-1);
+
+2014-06-26
+alter table appointment alter column userid rename to resourceId;

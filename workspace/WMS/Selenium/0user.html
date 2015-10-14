@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>0user</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">0user</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/admin/usersList</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Хэрэглэгч</td>
+	<td></td>
+</tr>
+<!--хэрэглэгч нэмэх-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Хэрэглэгч нэмэх</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Монгол,Англи үсэг тоо байж болно(2-64 урт)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Хэрэглэгчийн эрхээ сонгоно уу</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=userName</td>
+	<td>Батболд</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=role</td>
+	<td>label=admin-role</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Монгол,Англи үсэг тоо байж болно(4-64 урт)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=pwd</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Монгол,Англи үсэг тоо байж болно(4-64 урт)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=pwd</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=confirmPwd</td>
+	<td>1234</td>
+</tr>
+<!--шинэ хэрэглэгч үүсгэх-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> Батболд</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>admin-role</td>
+	<td></td>
+</tr>
+<!--ижил хэрэглэгч нэмэх-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Хэрэглэгч нэмэх</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=userName</td>
+	<td>Батболд</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=role</td>
+	<td>label=admin-role</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Хэрэглэгчийн нэр давхцаж байна</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=userName</td>
+	<td>Батболд1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Монгол,Англи үсэг тоо байж болно(4-64 урт)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=pwd</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=confirmPwd</td>
+	<td>1234</td>
+</tr>
+<!--хадгалах-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td> Батболд1</td>
+	<td></td>
+</tr>
+<!--засварлах-->
+<tr>
+	<td>doubleClickAndWait</td>
+	<td>//table[@id='mainTable']/tbody/tr[2]/td[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=role</td>
+	<td>label=user-role</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=pwd</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=confirmPwd</td>
+	<td>1234</td>
+</tr>
+<!--хадгалах-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='mainTable']/tbody/tr[2]/td[3]</td>
+	<td>user-role</td>
+</tr>
+</tbody></table>
+</body>
+</html>
