@@ -16,6 +16,9 @@ import javax.persistence.UniqueConstraint;
 
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 
+/*
+ * test user tims
+ */
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "userName", name = "userName"))
 @NamedQueries({
