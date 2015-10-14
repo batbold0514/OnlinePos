@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="annotatedClasses">
+			<list>
+				<value>mn.infosystems.estimator.model.Users</value>
+				<value>mn.infosystems.estimator.model.Role</value>
+				<value>mn.infosystems.estimator.model.CarFactory</value>
+				<value>mn.infosystems.estimator.model.CarMark</value>
+				<value>mn.infosystems.estimator.model.Car</value>
+				<value>mn.infosystems.estimator.model.Part</value>
+				<value>mn.infosystems.estimator.model.Employee</value>
+				<value>mn.infosystems.estimator.model.Organisation</value>
+				<value>mn.infosystems.estimator.model.CarMark</value>
+				<value>mn.infosystems.estimator.model.InfoBoard</value>
+				<value>mn.infosystems.estimator.model.BreakedPart</value>
+				<value>mn.infosystems.estimator.model.Defect</value>
+				<value>mn.infosystems.estimator.model.Customer</value>
+				<value>mn.infosystems.estimator.model.Company</value>
+				<value>mn.infosystems.estimator.model.Image</value>
+				<value>mn.infosystems.estimator.model.CarPrice</value>
+				<value>mn.infosystems.estimator.model.PartPrice</value>
+				<value>mn.infosystems.estimator.model.Cost</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		autowire="byName" />
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<bean id="sessionProvider" class="mn.infosystems.estimator.helper.SessionProvider"
+		autowire="byName" />
+	<bean id="usersService" class="mn.infosystems.estimator.service.UsersService"
+		autowire="byName" />
+	<bean id="roleService" class="mn.infosystems.estimator.service.RoleService"
+		autowire="byName" />
+	<!-- <bean id="sessionInterceptor" class="mn.chinbat.interceptor.SessionInterceptor" 
+		autowire="byName"/> -->
+	<bean id="carFactoryService" class="mn.infosystems.estimator.service.CarFactoryService"
+		autowire="byName" />
+	<bean id="carMarkService" class="mn.infosystems.estimator.service.CarMarkService"
+		autowire="byName" />
+	<bean id="carService" class="mn.infosystems.estimator.service.CarService"
+		autowire="byName" />
+	<bean id="partService" class="mn.infosystems.estimator.service.PartService"
+		autowire="byName" />
+	<bean id="employeeService" class="mn.infosystems.estimator.service.EmployeeService"
+		autowire="byName" />
+	<bean id="organisationService" class="mn.infosystems.estimator.service.OrganisationService"
+		autowire="byName" />
+	<bean id="infoBoardService" class="mn.infosystems.estimator.service.InfoBoardService"
+		autowire="byName" />
+	<bean id="breakedPartService" class="mn.infosystems.estimator.service.BreakedPartService"
+		autowire="byName" />
+	<bean id="defectService" class="mn.infosystems.estimator.service.DefectService"
+		autowire="byName" />
+	<bean id="customerService" class="mn.infosystems.estimator.service.CustomerService"
+		autowire="byName" />
+	<bean id="companyService" class="mn.infosystems.estimator.service.CompanyService"
+		autowire="byName" />
+	<bean id="imageService" class="mn.infosystems.estimator.service.ImageService"
+		autowire="byName" />
+	<bean id="carPriceService" class="mn.infosystems.estimator.service.CarPriceService"
+		autowire="byName" />
+	<bean id="partPriceService" class="mn.infosystems.estimator.service.PartPriceService"
+		autowire="byName" />
+	<bean id="costService" class="mn.infosystems.estimator.service.CostService"
+		autowire="byName" />
+</beans>
