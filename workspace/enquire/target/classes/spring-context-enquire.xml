@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="annotatedClasses">
+			<list>
+				<value>mn.infosystems.enquire.model.Users</value>
+				<value>mn.infosystems.enquire.model.Role</value>
+				<value>mn.infosystems.enquire.model.EnquireType</value>
+				<value>mn.infosystems.enquire.model.EnquireModel</value>
+				<value>mn.infosystems.enquire.model.Customer</value>
+				<value>mn.infosystems.enquire.model.Employee</value>
+				<value>mn.infosystems.enquire.model.Task</value>
+				<value>mn.infosystems.enquire.model.Project</value>
+				<value>mn.infosystems.enquire.model.ItemName</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		autowire="byName" />
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<bean id="sessionProvider" class="mn.infosystems.enquire.helper.SessionProvider"
+		autowire="byName" />
+	<bean id="usersService" class="mn.infosystems.enquire.service.UsersService"
+		autowire="byName" />
+	<bean id="roleService" class="mn.infosystems.enquire.service.RoleService"
+		autowire="byName" />
+	<bean id="enquireTypeService" class="mn.infosystems.enquire.service.EnquireTypeService"
+		autowire="byName" />
+	<bean id="enquireModelService" class="mn.infosystems.enquire.service.EnquireModelService"
+		autowire="byName" />
+	<bean id="customerService" class="mn.infosystems.enquire.service.CustomerService"
+		autowire="byName" />
+	<bean id="taskService" class="mn.infosystems.enquire.service.TaskService"
+		autowire="byName" />
+	<bean id="employeeService" class="mn.infosystems.enquire.service.EmployeeService"
+		autowire="byName" />
+	<bean id="projectService" class="mn.infosystems.enquire.service.ProjectService"
+		autowire="byName" />
+		<bean id="itemNameService" class="mn.infosystems.enquire.service.ItemNameService"
+		autowire="byName" />
+	<!-- <bean id="sessionInterceptor" class="mn.chinbat.interceptor.SessionInterceptor" 
+		autowire="byName"/> -->
+	</beans>

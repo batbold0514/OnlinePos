@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/content/inc/BaseLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/content/inc/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/content/inc/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/content/inc/footer.jsp" />
+	</definition>
+
+	<definition name="/users-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="users" />
+		<put-attribute name="body" value="/WEB-INF/content/users-list.jsp" />
+	</definition>
+
+	<definition name="/enquireType-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="enquireType" />
+		<put-attribute name="body" value="/WEB-INF/content/enquireType-list.jsp" />
+	</definition>
+	<definition name="/enquireModel-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="enquireModel" />
+		<put-attribute name="body" value="/WEB-INF/content/enquireModel-list.jsp" />
+	</definition>
+	<definition name="/customer-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="customer" />
+		<put-attribute name="body" value="/WEB-INF/content/customer-list.jsp" />
+	</definition>
+	<definition name="/create-project.tiles" extends="baseLayout">
+		<put-attribute name="title" value="users" />
+		<put-attribute name="body" value="/WEB-INF/content/create-project.jsp" />
+	</definition>
+	<definition name="/active-projects.tiles" extends="baseLayout">
+		<put-attribute name="title" value="users" />
+		<put-attribute name="body" value="/WEB-INF/content/active-projects.jsp" />
+	</definition>
+	<definition name="/show-project.tiles" extends="baseLayout">
+		<put-attribute name="title" value="users" />
+		<put-attribute name="body" value="/WEB-INF/content/show-project.jsp" />
+	</definition>
+	<definition name="/itemName-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="itemName" />
+		<put-attribute name="body" value="/WEB-INF/content/itemName-list.jsp" />
+	</definition>
+
+</tiles-definitions>

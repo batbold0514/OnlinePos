@@ -1,0 +1,10 @@
+\/* Users */
+insert into users values (1,'admin','MD5:5f4dcc3b5aa765d61d8327deb882cf99', 'admin' );
+insert into role values (1, 'admin-role');
+insert into role values (2, 'emp-role');
+insert into role values (3, 'user-role');
+insert into users_role values (1,1);
+
+
+
+
