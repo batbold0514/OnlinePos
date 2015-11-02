@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="annotatedClasses">
+			<list>
+				<value>mn.infosystems.callcenter.model.Users</value>
+				<value>mn.infosystems.callcenter.model.Role</value>
+				<value>mn.infosystems.callcenter.model.Debt</value>
+				<value>mn.infosystems.callcenter.model.DebtType</value>
+				<value>mn.infosystems.callcenter.model.TaxPayer</value>
+				<value>mn.infosystems.callcenter.model.Reason</value>
+				<value>mn.infosystems.callcenter.model.Calls</value>
+				<value>mn.infosystems.callcenter.model.MoneyIndex</value>
+				<value>mn.infosystems.callcenter.model.Plan</value>
+				<value>mn.infosystems.callcenter.model.DateIndex</value>
+				<value>mn.infosystems.callcenter.model.Commitment</value>
+				<value>mn.infosystems.callcenter.model.LogoutTime</value>
+				<value>mn.infosystems.callcenter.model.CallIndex</value>
+				<value>mn.infosystems.callcenter.model.CallDuration</value>
+				<value>mn.infosystems.callcenter.model.DatabaseInfo</value>
+				<value>mn.infosystems.callcenter.model.PhoneNumber</value>
+				<value>mn.infosystems.callcenter.model.AccountNumber</value>
+				<value>mn.infosystems.callcenter.model.ReturnReason</value>
+				<value>mn.infosystems.callcenter.model.ConnectedPerson</value>
+				<value>mn.infosystems.callcenter.model.TaxPayerReturn</value>
+				<value>mn.infosystems.callcenter.model.CallQuantity</value>
+				<value>mn.infosystems.callcenter.model.MaxPrice</value>
+				<value>mn.infosystems.callcenter.model.Image</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		autowire="byName" />
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<bean id="sessionProvider" class="mn.infosystems.callcenter.helper.SessionProvider"
+		autowire="byName" />
+	<bean id="usersService" class="mn.infosystems.callcenter.service.UsersService"
+		autowire="byName" />
+	<bean id="roleService" class="mn.infosystems.callcenter.service.RoleService"
+		autowire="byName" />
+	<!-- <bean id="sessionInterceptor" class="mn.chinbat.interceptor.SessionInterceptor" 
+		autowire="byName"/> -->
+	<bean id="debtService" class="mn.infosystems.callcenter.service.DebtService"
+		autowire="byName" />
+	<bean id="debtTypeService" class="mn.infosystems.callcenter.service.DebtTypeService"
+		autowire="byName" />
+	<bean id="taxPayerService" class="mn.infosystems.callcenter.service.TaxPayerService"
+		autowire="byName" />
+	<bean id="reasonService" class="mn.infosystems.callcenter.service.ReasonService"
+		autowire="byName" />
+	<bean id="callService" class="mn.infosystems.callcenter.service.CallService"
+		autowire="byName" />
+	<bean id="moneyIndexService" class="mn.infosystems.callcenter.service.MoneyIndexService"
+		autowire="byName" />
+	<bean id="planService" class="mn.infosystems.callcenter.service.PlanService"
+		autowire="byName" />
+	<bean id="dateIndexService" class="mn.infosystems.callcenter.service.DateIndexService"
+		autowire="byName" />
+	<bean id="commitmentService" class="mn.infosystems.callcenter.service.CommitmentService"
+		autowire="byName" />
+	<bean id="logoutTimeService" class="mn.infosystems.callcenter.service.LogoutTimeService"
+		autowire="byName" />
+	<bean id="callIndexService" class="mn.infosystems.callcenter.service.CallIndexService"
+		autowire="byName" />
+	<bean id="callDurationService" class="mn.infosystems.callcenter.service.CallDurationService"
+		autowire="byName" />
+	<bean id="databaseInfoService" class="mn.infosystems.callcenter.service.DatabaseInfoService"
+		autowire="byName" />
+	<bean id="phoneNumberService" class="mn.infosystems.callcenter.service.PhoneNumberService"
+		autowire="byName" />
+	<bean id="accountNumberService" class="mn.infosystems.callcenter.service.AccountNumberService"
+		autowire="byName" />
+	<bean id="returnReasonService" class="mn.infosystems.callcenter.service.ReturnReasonService"
+		autowire="byName" />
+	<bean id="connectedPersonService" class="mn.infosystems.callcenter.service.ConnectedPersonService"
+		autowire="byName" />
+	<bean id="taxPayerReturnService" class="mn.infosystems.callcenter.service.TaxPayerReturnService"
+		autowire="byName" /> 
+	<bean id="callQuantityService" class="mn.infosystems.callcenter.service.CallQuantityService"
+		autowire="byName" />
+	<bean id="maxPriceService" class="mn.infosystems.callcenter.service.MaxPriceService"
+		autowire="byName" />
+	<bean id="imageService" class="mn.infosystems.callcenter.service.ImageService"
+		autowire="byName" />
+</beans>

@@ -1,0 +1,326 @@
+\/* Users */
+insert into users values (1,'admin','MD5:5f4dcc3b5aa765d61d8327deb882cf99', 'admin' , 0);
+insert into role values (1, 'admin-role');
+insert into role values (2, 'senior-operator');
+insert into role values (3, 'operator');
+insert into users_role values (1,1);
+insert into logoutTime values (0,'00:05:00');
+insert into callIndex values (0,100,0);
+insert into callIndex values (1,200,1);
+insert into callIndex values (2,300,2);
+insert into callIndex values (3,400,3);
+insert into callIndex values (4,500,4);
+insert into callduration values(0,120);
+insert into returnreason values (0,'Хугацаа хэтэрсэн')
+insert into returnreason values (1,'Дуудлагын тоо хэтэрсэн')
+insert into returnreason values (2,'Шууд')
+insert into callQuantity values(0,5);
+insert into reason values (0,'Хэвийн')
+insert into reason values (1,'Утасны дугаар өөрчлөгдсөн')
+insert into maxPrice values(0,3000000);
+delete update_return_taxpayer;
+
+
+//   Үргэлжлэх хугаацнаас хамаарч дуусах өдрийг тооцоолох
+update debt set enddate = startdate + interval '1' day * duration;
+
+//  Өдрүүдийн хоорондох хоногийг олох
+CREATE OR REPLACE FUNCTION DateDiff (units VARCHAR(30), start_t TIMESTAMP, end_t TIMESTAMP) 
+     RETURNS INT AS $$
+   DECLARE
+     diff_interval INTERVAL; 
+     diff INT = 0;
+     years_diff INT = 0;
+   BEGIN
+     IF units IN ('yy', 'yyyy', 'year', 'mm', 'm', 'month') THEN
+       years_diff = DATE_PART('year', end_t) - DATE_PART('year', start_t);
+ 
+       IF units IN ('yy', 'yyyy', 'year') THEN
+         -- SQL Server does not count full years passed (only difference between year parts)
+         RETURN years_diff;
+       ELSE
+         -- If end month is less than start month it will subtracted
+         RETURN years_diff * 12 + (DATE_PART('month', end_t) - DATE_PART('month', start_t)); 
+       END IF;
+     END IF;
+ 
+     -- Minus operator returns interval 'DDD days HH:MI:SS'  
+     diff_interval = end_t - start_t;
+ 
+     diff = diff + DATE_PART('day', diff_interval);
+ 
+     IF units IN ('wk', 'ww', 'week') THEN
+       diff = diff/7;
+       RETURN diff;
+     END IF;
+ 
+     IF units IN ('dd', 'd', 'day') THEN
+       RETURN diff;
+     END IF;
+ 
+     diff = diff * 24 + DATE_PART('hour', diff_interval); 
+ 
+     IF units IN ('hh', 'hour') THEN
+        RETURN diff;
+     END IF;
+ 
+     diff = diff * 60 + DATE_PART('minute', diff_interval);
+ 
+     IF units IN ('mi', 'n', 'minute') THEN
+        RETURN diff;
+     END IF;
+ 
+     diff = diff * 60 + DATE_PART('second', diff_interval);
+ 
+     RETURN diff;
+   END;
+   $$ LANGUAGE plpgsql;
+   
+   
+   //  бааз татхад debt_accountnumber-ийн холбоос хийх trigger
+   CREATE OR REPLACE FUNCTION debt_accountnumber()
+  RETURNS trigger AS
+$BODY$DECLARE
+        delta_debt_id          bigint;
+  DECLARE      delta_listofaccountnumber_id       bigint;
+    BEGIN
+
+       IF (TG_OP = 'INSERT') THEN
+
+            delta_debt_id  = NEW.id;
+          for delta_listofaccountnumber_id in select id from accountnumber where debttypenumber 
+		like cast(new.type_id as varchar) 
+		and officenumber like New.officenumber loop
+            
+		INSERT INTO debt_accountnumber (
+                            debt_id,
+                            listofaccountnumber_id)
+                    VALUES (delta_debt_id,
+                            delta_listofaccountnumber_id);
+           end loop; 
+        END IF;
+        
+        RETURN NULL;
+
+    END;$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+  
+ALTER FUNCTION debt_accountnumber()
+  OWNER TO postgres;
+  CREATE TRIGGER debt_account_trigger
+  AFTER INSERT
+  ON debt
+  FOR EACH ROW
+  EXECUTE PROCEDURE debt_accountnumber();
+  
+     //  бааз татхад taxpayer_debt-ийн холбоос хийх trigger
+     
+CREATE OR REPLACE FUNCTION taxpayer_debt()
+  RETURNS trigger AS
+$BODY$DECLARE
+        delta_taxpayer_id          bigint;
+        delta_debtList_id       bigint;
+    BEGIN
+
+       IF (TG_OP = 'INSERT') THEN
+
+            delta_debtList_id  = NEW.id;
+            delta_taxpayer_id  = NEW.taxpayer_id;
+		INSERT INTO taxpayer_debt (
+                            taxpayer_id,
+                            debtList_id)
+                    VALUES (delta_taxpayer_id,
+                            delta_debtList_id);
+        END IF;
+        
+        RETURN NULL;
+
+    END;$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION taxpayer_debt()
+  OWNER TO postgres;
+  
+  CREATE TRIGGER taxpayer_debt_trigger
+  AFTER INSERT
+  ON debt
+  FOR EACH ROW
+  EXECUTE PROCEDURE taxpayer_debt();
+     
+   
+//өрийн статус өөрчлөх
+
+CREATE OR REPLACE FUNCTION debt_status_change()
+  RETURNS trigger AS
+$BODY$    BEGIN
+
+       IF (TG_OP = 'UPDATE') THEN
+		if(new.status = 0) then
+			if( new.callquantity >=(select callq.count from callquantity callq limit 1) and (select count(*) from taxpayerreturn_debt where debtoflist_id = new.id)=0 )then
+				if(select count(*) from taxpayerreturn)!=0 then
+					insert into taxpayerreturn values((select max(id)+1 from taxpayerreturn),now(),1,1);
+				else
+					insert into taxpayerreturn values(0,now(),1,1);
+				end if;
+				insert into taxpayerreturn_debt values ( (select max(id) from taxpayerreturn),new.id);
+				update debt set status = 1 where id = new.id;
+			end if;
+			if( new.enddate >now()and (select count(*) from taxpayerreturn_debt where debtoflist_id = new.id)=0) then
+				if(select count(*) from taxpayerreturn)!=0 then
+					insert into taxpayerreturn values((select max(id)+1 from taxpayerreturn),now(),0,1);
+				else
+					insert into taxpayerreturn values(0,now(),0,1);
+				end if;
+				insert into taxpayerreturn_debt values ( (select max(id) from taxpayerreturn),new.id);
+				update debt set status = 1 where id = new.id;
+			end if;
+			if(select sum(balance) from Debt where payDate is null and taxpayer_id = new.taxpayer_id and status = 0 ) >(select price.maxprice from maxprice price limit 1) then
+				update debt set status = 1 where taxpayer_id = new.taxpayer_id and payDate is null;
+			end if;
+		else 
+			if(select sum(balance) from Debt where payDate is null and taxpayer_id = new.taxpayer_id and status = 1 ) <(select price.maxprice from maxprice price limit 1) then
+				update debt set status = 0 where taxpayer_id = new.taxpayer_id  and payDate is null;
+			end if;
+		end if;
+		
+        END IF;
+        
+        RETURN NULL;
+
+    END;$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION debt_status_change()
+  OWNER TO postgres;
+  
+  
+  //Буцаалтын өгөгдөл шүүх
+CREATE OR REPLACE FUNCTION update_return_taxpayer()
+  RETURNS boolean AS
+$BODY$DECLARE tax debt%rowtype;
+BEGIN
+	--Routine body goes here...
+	for tax in select * from debt where enddate < now() and paydate is null  and 
+			id not in (select  debtoflist_id from taxpayerreturn_debt GROUP BY debtoflist_id)loop	
+				if((select count(*) from taxpayerreturn)!=0) then
+					insert into taxpayerreturn values((select "max"(id)+1 from taxpayerreturn),now(),0);
+				else
+					insert into taxpayerreturn values(0,now(),0);
+				end if;
+					insert into taxpayerreturn_debt values ( (select "max"(id) from taxpayerreturn),tax.id);
+					update taxpayer set status = 1 where id = tax.taxpayer_id;
+	end loop;
+for tax in select * from debt where callquantity >=5 and paydate is null  and 
+			id not in (select  debtoflist_id from taxpayerreturn_debt GROUP BY debtoflist_id)loop	
+					insert into taxpayerreturn values((select "max"(id)+1 from taxpayerreturn),now(),0);
+					insert into taxpayerreturn_debt values ( (select "max"(id) from taxpayerreturn),tax.id);
+					update taxpayer set status = 1 where id = tax.taxpayer_id;
+	end loop;
+
+return 't';
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION update_return_taxpayer()
+  OWNER TO postgres;
+  
+  
+  
+  //үнийн индекс тооцох функц
+  
+  CREATE OR REPLACE FUNCTION updatebalance(callquantity_in integer)
+  RETURNS boolean AS
+$BODY$DECLARE taxid callquantity%rowtype;
+DECLARE money moneyindex%rowtype;
+BEGIN
+for money IN select * from moneyindex index loop
+	 for taxid IN select dt.taxPayer_id as "id",cast(sum(dt.balance) as integer) as "count" from Debt dt where 
+			dt.payDate is null and dt.status = 0 GROUP BY dt.taxPayer_id loop
+			if money.status =0 then 
+				update TaxPayer tp set totalIndex = totalIndex+ money.money_index where tp.id = taxid.id and (money.min <=taxid.count) and (taxid.count <= money.max);
+			end if;
+	end loop;
+end loop;
+RETURN 't';
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION updatebalance(integer)
+  OWNER TO postgres;
+  
+  //дуудлагын индекс тооцох функц 
+  
+  CREATE OR REPLACE FUNCTION updatecallindex(callquantity_in integer)
+  RETURNS boolean AS
+$BODY$DECLARE callindexs callindex%rowtype;
+DECLARE taxid callquantity%rowtype;
+BEGIN
+for callindexs IN select * from callindex loop	
+	for taxid in (select dt.taxPayer_id as id,max(dt.callQuantity) as "count" from Debt dt where dt.taxPayer_id IN (select dt.taxPayer_id from Debt dt where 
+			dt.payDate is null and dt.status = 0) GROUP BY dt.taxPayer_id) loop
+		update TaxPayer tp set totalIndex = totalIndex+ callindexs.callindex 
+			where callindexs.callQuantity = taxid."count" and tp.id = taxid.id;
+	end loop;
+end loop;
+RETURN 't';
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION updatecallindex(integer)
+  OWNER TO postgres;
+  
+  // өдрийн индекс тооцох функц
+  
+  CREATE OR REPLACE FUNCTION updatedateindex(callquantity_in integer)
+  RETURNS boolean AS
+$BODY$DECLARE taxid BIGINT;
+DECLARE dateindexs dateindex%rowtype;
+BEGIN
+for dateindexs IN select * from dateindex loop
+	 for taxid IN select dt.taxPayer_id from Debt dt where (dateindexs.min <= DATEDIFF('day',cast(now() as timestamp),dt.endDate) 
+			and DATEDIFF('day',cast(now()as timestamp),dt.endDate) <= dateindexs.max)
+			and dt.payDate is null and dt.status = 0
+			loop
+				if dateindexs.status = 0 then 
+					update TaxPayer tp set totalIndex = totalIndex+ dateindexs.date_index where tp.id = taxid;
+				end if;
+	end loop;
+end loop;
+RETURN 't';
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION updatedateindex(integer)
+  OWNER TO postgres;
+  
+  //Татварын төрлийн индекс тооцох функц
+  CREATE OR REPLACE FUNCTION updatedebttype(callquantity_in integer)
+  RETURNS boolean AS
+$BODY$DECLARE taxid BIGINT;
+DECLARE dttype debttype%rowtype;
+BEGIN
+for dttype IN select * from debttype loop
+	 for taxid IN select dt.taxPayer_id from Debt dt where dt.type_id = dttype.id 
+			and dt.payDate is null and dt.status = 0
+ loop
+	if dttype.status = 0 then	
+		update TaxPayer tp set totalIndex = totalIndex+ dttype.debttypeindex  where tp.id = taxid;
+	end if;
+	end loop;
+end loop;
+RETURN 't';
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION updatedebttype(integer)
+  OWNER TO postgres;
+  
+  
+  
+   

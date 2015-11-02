@@ -1,0 +1,28 @@
+insert into connectedperson(id,persondescription) VALUES (1,'Өртэй этгээд');
+insert into connectedperson(id,persondescription) VALUES (2,'Төлөөлөгч');
+insert into connectedperson(id,persondescription) VALUES (3,'Нөхөр');
+insert into connectedperson(id,persondescription) VALUES (4,'Эхнэр');
+insert into connectedperson(id,persondescription) VALUES (5,'Нябо');
+insert into connectedperson(id,persondescription) VALUES (6,'Ажилтан');
+insert into connectedperson(id,persondescription) VALUES (7,'Хамаатан');
+insert into connectedperson(id,persondescription) VALUES (8,'Бусад');
+
+INSERT into returnreason (ID,description) VALUES (1,'Утасны дугаар тодорхойгүй');
+INSERT into returnreason (ID,description) VALUES (2,'Дампуурсан');
+INSERT into returnreason (ID,description) VALUES (3,'Татвар төлөхөд хүндрэлтэй');
+INSERT into returnreason (ID,description) VALUES (4,'Татвар төлөх бодолгүй');
+INSERT into returnreason (ID,description) VALUES (5,'Харъяа татварын албатай зохицуулалт хийх');
+INSERT into returnreason (ID,description) VALUES (6,'Харъяа татварын албанаас зөвлөгөө авсан');
+INSERT into returnreason (ID,description) VALUES (7,'Урт хугацаанд хуваан төлөх');
+INSERT into returnreason (ID,description) VALUES (8,'Бусал шалтгаан');
+
+insert into reason(id,description) VALUES (1,'Хэвийн');
+insert into reason(id,description) VALUES (2,'Хариу өгөөгүй');
+insert into reason(id,description) VALUES (3,'Ярьж байсан');
+insert into reason(id,description) VALUES (4,'Холбогдох боломжгүй');
+
+insert into callduration(id,duration) VALUES (1,120);
+
+insert into databaseinfo values (1,'0:00','jdbc:oracle:thin:@192.168.1.5:1521:dbtaxint','dman_user','dman_user');
+
+insert into callduration(id,duration) VALUES (1,120);

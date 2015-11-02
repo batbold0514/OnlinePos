@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/content/inc/BaseLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/content/inc/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/content/inc/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/content/inc/footer.jsp" />
+	</definition>
+
+	<definition name="/users-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="operators" />
+		<put-attribute name="body" value="/WEB-INF/content/users-list.jsp" />
+	</definition>
+	<definition name="/users-list-inactive.tiles" extends="baseLayout">
+		<put-attribute name="title" value="operators" />
+		<put-attribute name="body" value="/WEB-INF/content/users-list-inactive.jsp" />
+	</definition>
+	<definition name="/reason-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="reasons" />
+		<put-attribute name="body" value="/WEB-INF/content/reason-list.jsp" />
+	</definition>
+	<definition name="/tax-payer-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Taxpayer list" />
+		<put-attribute name="body" value="/WEB-INF/content/tax-payer-list.jsp" />
+	</definition>
+	<definition name="/debtType-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="DebtType" />
+		<put-attribute name="body" value="/WEB-INF/content/debtType-list.jsp" />
+	</definition>
+	<definition name="/moneyIndex-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Index" />
+		<put-attribute name="body" value="/WEB-INF/content/moneyIndex-list.jsp" />
+	</definition>
+	<definition name="/day-plan.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Day Plan" />
+		<put-attribute name="body" value="/WEB-INF/content/day-plan.jsp" />
+	</definition>
+	<definition name="/show-plan.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Show plan" />
+		<put-attribute name="body" value="/WEB-INF/content/show-plan.jsp" />
+	</definition>
+	<definition name="/admin-home-page.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Admin home page" />
+		<put-attribute name="body" value="/WEB-INF/content/admin-home-page.jsp" />
+	</definition>
+	<definition name="/operator-home-page.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Operator home page" />
+		<put-attribute name="body" value="/WEB-INF/content/operator-home-page.jsp" />
+	</definition>
+	<definition name="/dateIndex-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Index" />
+		<put-attribute name="body" value="/WEB-INF/content/dateIndex-list.jsp" />
+	</definition>
+	<definition name="/manage-operartor.tiles" extends="baseLayout">
+		<put-attribute name="title" value="manage op" />
+		<put-attribute name="body" value="/WEB-INF/content/manage-operartor.jsp" />
+	</definition>
+	<definition name="/import-excel.tiles" extends="baseLayout">
+		<put-attribute name="title" value="import from excel" />
+		<put-attribute name="body" value="/WEB-INF/content/import-excel.jsp" />
+	</definition>
+	<definition name="/callIndex-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Call IndexList" />
+		<put-attribute name="body" value="/WEB-INF/content/callIndex-list.jsp" />
+	</definition>
+	<definition name="/calls-report.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Call report" />
+		<put-attribute name="body" value="/WEB-INF/content/calls-report.jsp" />
+	</definition>
+	<definition name="/operator-status.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Operator status" />
+		<put-attribute name="body" value="/WEB-INF/content/operator-status.jsp" />
+	</definition>
+	<definition name="/call-duration.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Call duration" />
+		<put-attribute name="body" value="/WEB-INF/content/call-duration.jsp" />
+	</definition>
+	<definition name="/debt-report.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Debt report" />
+		<put-attribute name="body" value="/WEB-INF/content/debt-report.jsp" />
+	</definition>
+	<definition name="/return-report.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Return Report" />
+		<put-attribute name="body" value="/WEB-INF/content/return-report.jsp" />
+	</definition>
+	<definition name="/return-reason.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Return Reason" />
+		<put-attribute name="body" value="/WEB-INF/content/return-reason.jsp" />
+	</definition>
+	<definition name="/database-info.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Database info" />
+		<put-attribute name="body" value="/WEB-INF/content/database-info.jsp" />
+	</definition>
+	<definition name="/call-process-report.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Call Index" />
+		<put-attribute name="body" value="/WEB-INF/content/call-process-report.jsp" />
+	</definition>
+	<definition name="/connected-people.tiles" extends="baseLayout">
+		<put-attribute name="title" value="connected people" />
+		<put-attribute name="body" value="/WEB-INF/content/connected-people.jsp" />
+	</definition>
+	<definition name="/account-number.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Account number" />
+		<put-attribute name="body" value="/WEB-INF/content/account-number.jsp" />
+	</definition>
+	<definition name="/connected-person-report.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Connected person report" />
+		<put-attribute name="body" value="/WEB-INF/content/connected-person-report.jsp" />
+	</definition>
+	<definition name="/callQuantity-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Call IndexList" />
+		<put-attribute name="body" value="/WEB-INF/content/callQuantity-list.jsp" />
+	</definition>
+	<definition name="/maxPrice-list.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Max Price" />
+		<put-attribute name="body" value="/WEB-INF/content/maxPrice-list.jsp" />
+	</definition>
+	<definition name="/commitment-report.tiles" extends="baseLayout">
+		<put-attribute name="title" value="Commitment Report" />
+		<put-attribute name="body" value="/WEB-INF/content/commitment-report.jsp" />
+	</definition>
+</tiles-definitions>
