@@ -3,7 +3,9 @@ package mn.infosystems.estimator.action;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.JOptionPane;
+
+import mn.infosystems.estimator.model.BreakedPart;
+import mn.infosystems.estimator.service.BreakedPartService;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -13,9 +15,6 @@ import org.apache.struts2.convention.annotation.Namespaces;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import mn.infosystems.estimator.model.BreakedPart;
-import mn.infosystems.estimator.service.BreakedPartService;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
@@ -23,7 +22,7 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
 		@InterceptorRef("paramsPrepareParamsStack") })
-@Namespaces(value = { @Namespace("/admin") })
+@Namespaces(value = { @Namespace("/admin"),@Namespace("/employee") })
 public class BreakedPartAction extends ActionSupport implements Preparable,
 		ModelDriven<BreakedPart>, ServletRequestAware {
 

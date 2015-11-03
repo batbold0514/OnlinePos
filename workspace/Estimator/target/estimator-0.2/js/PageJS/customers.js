@@ -200,12 +200,7 @@ function pageScript() {
 		position1 = oTable1.fnGetPosition(this);
 		id1 = oTable1.fnGetData(position1)[0];
 		$("input[name='id']").val(id1);
-		confirm = oTable1.fnGetData(position1)[3];
-		if(confirm !="Батлагдсан"){
-			editajax();
-		}else{
-			alert("Батлагдсан байна");
-		}
+		editajax();
 			
 	});
 	oTable1 = $('#customerTable')
@@ -296,11 +291,7 @@ function events() {
 						var anSelected = fnGetSelected(oTable1);
 						if (anSelected.length !== 0) {
 							e.preventDefault();
-							if(confirm !="Батлагдсан"){
-								editajax();
-							}else{
-								alert("Батлагдсан байна");
-							}
+							editajax();
 							
 						}
 					}).prev(".ui-dialog-titlebar").css("background", "yellow");

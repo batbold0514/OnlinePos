@@ -1,0 +1,117 @@
+[2015-10-30 11:49:20.040] [006228] [local] [PGSQL]
+SELECT d.datname, d.oid, pg_get_userbyid(d.datdba) AS owner, shobj_description(d.oid, 'pg_database') AS comment, t.spcname, d.datacl, d.datlastsysoid, d.encoding, pg_encoding_to_char(d.encoding) AS encodingname FROM pg_database d LEFT JOIN pg_tablespace t ON d.dattablespace=t.oid
+
+[2015-10-30 11:49:21.709] [006348] [local] [PGSQL]
+SELECT nspname, oid, pg_get_userbyid(nspowner) AS owner, nspacl, obj_description(oid) FROM pg_namespace
+
+[2015-10-30 11:49:22.415] [006348] [local] [PGSQL]
+SELECT c.oid, obj_description(c.oid),  c.relhasoids AS hasoids, n.nspname AS schemaname, c.relname AS tablename, pg_get_userbyid(c.relowner) AS tableowner, t.spcname AS "tablespace", c.relhasindex AS hasindexes, c.relhasrules AS hasrules, c.relhastriggers AS hastriggers, c.relacl, c.reltuples, ((SELECT count(*) FROM pg_inherits WHERE inhparent = c.oid) > 0) AS inhtable, i2.relname AS inhtablename, c.reloptions AS param, c.relpersistence AS unlogged FROM pg_class c LEFT JOIN pg_namespace n ON n.oid = c.relnamespace LEFT JOIN pg_tablespace t ON t.oid = c.reltablespace LEFT JOIN (pg_inherits i INNER JOIN pg_class c2 ON i.inhparent = c2.oid) i2 ON i2.inhrelid = c.oid WHERE (c.relkind = 'r'::"char") AND n.nspname = 'public'
+
+[2015-10-30 11:49:24.138] [006348] [local] [PGSQL]
+SELECT col.table_name, col.column_name, col.character_maximum_length, col.is_nullable, col.numeric_precision, col.numeric_scale, col.datetime_precision, col.ordinal_position, b.atttypmod, b.attndims, col.data_type AS col_type, et.typelem, et.typlen, et.typtype, nbt.nspname AS elem_schema , bt.typname AS elem_name, b.atttypid, col.udt_schema, col.udt_name, col.column_default AS col_default, col.domain_catalog, col.domain_schema, col.domain_name, col_description(c.oid, col.ordinal_position) AS comment, b.attacl, coll.collname FROM information_schema.columns AS col LEFT JOIN pg_namespace ns ON ns.nspname = col.table_schema LEFT JOIN pg_class c ON col.table_name = c.relname AND c.relnamespace = ns.oid LEFT JOIN pg_attrdef a ON c.oid = a.adrelid AND col.ordinal_position = a.adnum LEFT JOIN pg_attribute b ON b.attrelid = c.oid AND b.attname = col.column_name LEFT JOIN pg_type et ON et.oid = b.atttypid LEFT JOIN pg_collation coll ON coll.oid = b.attcollation LEFT JOIN pg_type bt ON et.typelem = bt.oid LEFT JOIN pg_namespace nbt ON bt.typnamespace = nbt.oid WHERE col.table_schema = 'public' AND col.table_name = 'filepath' ORDER BY col.table_name, col.ordinal_position
+
+[2015-10-30 11:49:24.231] [006348] [local] [PGSQL]
+SELECT oid, oprname FROM pg_catalog.pg_operator
+
+[2015-10-30 11:49:24.374] [006348] [local] [PGSQL]
+SELECT c.oid, c.conname, c.contype, c.condeferrable, c.condeferred, c.conkey, c.confupdtype, c.confdeltype, c.consrc, t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, ts.spcname, i.reloptions AS param, am.amname, c.conexclop, pg_get_expr(ci.indpred, ci.indexrelid, true) where_predicate, obj_description(c.oid) AS comment FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) LEFT JOIN pg_class i ON (c.conname = i.relname) AND (c.connamespace = i.relnamespace) LEFT JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) LEFT JOIN pg_tablespace ts ON (i.reltablespace = ts.oid) LEFT JOIN pg_am am ON (i.relam = am.oid) LEFT JOIN pg_index ci ON (c.conindid = ci.indexrelid) WHERE ns.nspname = 'public' AND t.relname = 'filepath' ORDER BY t.relname, i.oid
+
+[2015-10-30 11:49:24.381] [006348] [local] [PGSQL]
+SELECT t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, c.conname, c.confkey, a.attname AS foreign_field, a.attnum FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) INNER JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) INNER JOIN pg_attribute a ON (a.attrelid = f.oid) WHERE a.attnum > 0 AND ns.nspname = 'public' AND t.relname = 'filepath' ORDER BY t.relname, c.conname, a.attnum
+
+[2015-10-30 11:49:24.424] [008140] [local] [PGSQL]
+SELECT * FROM "public"."filepath" LIMIT 1000 OFFSET 0
+
+[2015-10-30 11:49:24.452] [008140] [local] [PGSQL]
+SELECT c.conkey FROM pg_constraint c WHERE c.contype='p' AND c.conrelid = 74000
+
+[2015-10-30 11:50:45.361] [006348] [local] [PGSQL]
+SELECT col.table_name, col.column_name, col.character_maximum_length, col.is_nullable, col.numeric_precision, col.numeric_scale, col.datetime_precision, col.ordinal_position, b.atttypmod, b.attndims, col.data_type AS col_type, et.typelem, et.typlen, et.typtype, nbt.nspname AS elem_schema , bt.typname AS elem_name, b.atttypid, col.udt_schema, col.udt_name, col.column_default AS col_default, col.domain_catalog, col.domain_schema, col.domain_name, col_description(c.oid, col.ordinal_position) AS comment, b.attacl, coll.collname FROM information_schema.columns AS col LEFT JOIN pg_namespace ns ON ns.nspname = col.table_schema LEFT JOIN pg_class c ON col.table_name = c.relname AND c.relnamespace = ns.oid LEFT JOIN pg_attrdef a ON c.oid = a.adrelid AND col.ordinal_position = a.adnum LEFT JOIN pg_attribute b ON b.attrelid = c.oid AND b.attname = col.column_name LEFT JOIN pg_type et ON et.oid = b.atttypid LEFT JOIN pg_collation coll ON coll.oid = b.attcollation LEFT JOIN pg_type bt ON et.typelem = bt.oid LEFT JOIN pg_namespace nbt ON bt.typnamespace = nbt.oid WHERE col.table_schema = 'public' AND col.table_name = 'image' ORDER BY col.table_name, col.ordinal_position
+
+[2015-10-30 11:50:45.371] [006348] [local] [PGSQL]
+SELECT oid, oprname FROM pg_catalog.pg_operator
+
+[2015-10-30 11:50:45.446] [006348] [local] [PGSQL]
+SELECT c.oid, c.conname, c.contype, c.condeferrable, c.condeferred, c.conkey, c.confupdtype, c.confdeltype, c.consrc, t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, ts.spcname, i.reloptions AS param, am.amname, c.conexclop, pg_get_expr(ci.indpred, ci.indexrelid, true) where_predicate, obj_description(c.oid) AS comment FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) LEFT JOIN pg_class i ON (c.conname = i.relname) AND (c.connamespace = i.relnamespace) LEFT JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) LEFT JOIN pg_tablespace ts ON (i.reltablespace = ts.oid) LEFT JOIN pg_am am ON (i.relam = am.oid) LEFT JOIN pg_index ci ON (c.conindid = ci.indexrelid) WHERE ns.nspname = 'public' AND t.relname = 'image' ORDER BY t.relname, i.oid
+
+[2015-10-30 11:50:45.451] [006348] [local] [PGSQL]
+SELECT t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, c.conname, c.confkey, a.attname AS foreign_field, a.attnum FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) INNER JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) INNER JOIN pg_attribute a ON (a.attrelid = f.oid) WHERE a.attnum > 0 AND ns.nspname = 'public' AND t.relname = 'image' ORDER BY t.relname, c.conname, a.attnum
+
+[2015-10-30 11:50:45.484] [002104] [local] [PGSQL]
+SELECT * FROM "public"."image" LIMIT 1000 OFFSET 0
+
+[2015-10-30 11:50:45.517] [002104] [local] [PGSQL]
+SELECT c.conkey FROM pg_constraint c WHERE c.contype='p' AND c.conrelid = 73923
+
+[2015-10-30 11:50:47.536] [006348] [local] [PGSQL]
+SELECT col.table_name, col.column_name, col.character_maximum_length, col.is_nullable, col.numeric_precision, col.numeric_scale, col.datetime_precision, col.ordinal_position, b.atttypmod, b.attndims, col.data_type AS col_type, et.typelem, et.typlen, et.typtype, nbt.nspname AS elem_schema , bt.typname AS elem_name, b.atttypid, col.udt_schema, col.udt_name, col.column_default AS col_default, col.domain_catalog, col.domain_schema, col.domain_name, col_description(c.oid, col.ordinal_position) AS comment, b.attacl, coll.collname FROM information_schema.columns AS col LEFT JOIN pg_namespace ns ON ns.nspname = col.table_schema LEFT JOIN pg_class c ON col.table_name = c.relname AND c.relnamespace = ns.oid LEFT JOIN pg_attrdef a ON c.oid = a.adrelid AND col.ordinal_position = a.adnum LEFT JOIN pg_attribute b ON b.attrelid = c.oid AND b.attname = col.column_name LEFT JOIN pg_type et ON et.oid = b.atttypid LEFT JOIN pg_collation coll ON coll.oid = b.attcollation LEFT JOIN pg_type bt ON et.typelem = bt.oid LEFT JOIN pg_namespace nbt ON bt.typnamespace = nbt.oid WHERE col.table_schema = 'public' AND col.table_name = 'filepath' ORDER BY col.table_name, col.ordinal_position
+
+[2015-10-30 11:50:47.546] [006348] [local] [PGSQL]
+SELECT oid, oprname FROM pg_catalog.pg_operator
+
+[2015-10-30 11:50:47.621] [006348] [local] [PGSQL]
+SELECT c.oid, c.conname, c.contype, c.condeferrable, c.condeferred, c.conkey, c.confupdtype, c.confdeltype, c.consrc, t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, ts.spcname, i.reloptions AS param, am.amname, c.conexclop, pg_get_expr(ci.indpred, ci.indexrelid, true) where_predicate, obj_description(c.oid) AS comment FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) LEFT JOIN pg_class i ON (c.conname = i.relname) AND (c.connamespace = i.relnamespace) LEFT JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) LEFT JOIN pg_tablespace ts ON (i.reltablespace = ts.oid) LEFT JOIN pg_am am ON (i.relam = am.oid) LEFT JOIN pg_index ci ON (c.conindid = ci.indexrelid) WHERE ns.nspname = 'public' AND t.relname = 'filepath' ORDER BY t.relname, i.oid
+
+[2015-10-30 11:50:47.625] [006348] [local] [PGSQL]
+SELECT t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, c.conname, c.confkey, a.attname AS foreign_field, a.attnum FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) INNER JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) INNER JOIN pg_attribute a ON (a.attrelid = f.oid) WHERE a.attnum > 0 AND ns.nspname = 'public' AND t.relname = 'filepath' ORDER BY t.relname, c.conname, a.attnum
+
+[2015-10-30 11:50:47.658] [008068] [local] [PGSQL]
+SELECT * FROM "public"."filepath" LIMIT 1000 OFFSET 0
+
+[2015-10-30 11:50:47.659] [008068] [local] [PGSQL]
+SELECT c.conkey FROM pg_constraint c WHERE c.contype='p' AND c.conrelid = 74000
+
+[2015-10-30 11:51:07.662] [006348] [local] [PGSQL]
+SELECT col.table_name, col.column_name, col.character_maximum_length, col.is_nullable, col.numeric_precision, col.numeric_scale, col.datetime_precision, col.ordinal_position, b.atttypmod, b.attndims, col.data_type AS col_type, et.typelem, et.typlen, et.typtype, nbt.nspname AS elem_schema , bt.typname AS elem_name, b.atttypid, col.udt_schema, col.udt_name, col.column_default AS col_default, col.domain_catalog, col.domain_schema, col.domain_name, col_description(c.oid, col.ordinal_position) AS comment, b.attacl, coll.collname FROM information_schema.columns AS col LEFT JOIN pg_namespace ns ON ns.nspname = col.table_schema LEFT JOIN pg_class c ON col.table_name = c.relname AND c.relnamespace = ns.oid LEFT JOIN pg_attrdef a ON c.oid = a.adrelid AND col.ordinal_position = a.adnum LEFT JOIN pg_attribute b ON b.attrelid = c.oid AND b.attname = col.column_name LEFT JOIN pg_type et ON et.oid = b.atttypid LEFT JOIN pg_collation coll ON coll.oid = b.attcollation LEFT JOIN pg_type bt ON et.typelem = bt.oid LEFT JOIN pg_namespace nbt ON bt.typnamespace = nbt.oid WHERE col.table_schema = 'public' AND col.table_name = 'teachingaid_filepath' ORDER BY col.table_name, col.ordinal_position
+
+[2015-10-30 11:51:07.672] [006348] [local] [PGSQL]
+SELECT oid, oprname FROM pg_catalog.pg_operator
+
+[2015-10-30 11:51:07.747] [006348] [local] [PGSQL]
+SELECT c.oid, c.conname, c.contype, c.condeferrable, c.condeferred, c.conkey, c.confupdtype, c.confdeltype, c.consrc, t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, ts.spcname, i.reloptions AS param, am.amname, c.conexclop, pg_get_expr(ci.indpred, ci.indexrelid, true) where_predicate, obj_description(c.oid) AS comment FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) LEFT JOIN pg_class i ON (c.conname = i.relname) AND (c.connamespace = i.relnamespace) LEFT JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) LEFT JOIN pg_tablespace ts ON (i.reltablespace = ts.oid) LEFT JOIN pg_am am ON (i.relam = am.oid) LEFT JOIN pg_index ci ON (c.conindid = ci.indexrelid) WHERE ns.nspname = 'public' AND t.relname = 'teachingaid_filepath' ORDER BY t.relname, i.oid
+
+[2015-10-30 11:51:07.758] [006348] [local] [PGSQL]
+SELECT t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, c.conname, c.confkey, a.attname AS foreign_field, a.attnum FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) INNER JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) INNER JOIN pg_attribute a ON (a.attrelid = f.oid) WHERE a.attnum > 0 AND ns.nspname = 'public' AND t.relname = 'teachingaid_filepath' ORDER BY t.relname, c.conname, a.attnum
+
+[2015-10-30 11:51:07.795] [005648] [local] [PGSQL]
+SELECT * FROM "public"."teachingaid_filepath" LIMIT 1000 OFFSET 0
+
+[2015-10-30 11:51:07.796] [005648] [local] [PGSQL]
+SELECT c.conkey FROM pg_constraint c WHERE c.contype='p' AND c.conrelid = 74046
+
+[2015-10-30 11:51:12.970] [006348] [local] [PGSQL]
+SELECT col.table_name, col.column_name, col.character_maximum_length, col.is_nullable, col.numeric_precision, col.numeric_scale, col.datetime_precision, col.ordinal_position, b.atttypmod, b.attndims, col.data_type AS col_type, et.typelem, et.typlen, et.typtype, nbt.nspname AS elem_schema , bt.typname AS elem_name, b.atttypid, col.udt_schema, col.udt_name, col.column_default AS col_default, col.domain_catalog, col.domain_schema, col.domain_name, col_description(c.oid, col.ordinal_position) AS comment, b.attacl, coll.collname FROM information_schema.columns AS col LEFT JOIN pg_namespace ns ON ns.nspname = col.table_schema LEFT JOIN pg_class c ON col.table_name = c.relname AND c.relnamespace = ns.oid LEFT JOIN pg_attrdef a ON c.oid = a.adrelid AND col.ordinal_position = a.adnum LEFT JOIN pg_attribute b ON b.attrelid = c.oid AND b.attname = col.column_name LEFT JOIN pg_type et ON et.oid = b.atttypid LEFT JOIN pg_collation coll ON coll.oid = b.attcollation LEFT JOIN pg_type bt ON et.typelem = bt.oid LEFT JOIN pg_namespace nbt ON bt.typnamespace = nbt.oid WHERE col.table_schema = 'public' AND col.table_name = 'teachingaid_image' ORDER BY col.table_name, col.ordinal_position
+
+[2015-10-30 11:51:12.981] [006348] [local] [PGSQL]
+SELECT oid, oprname FROM pg_catalog.pg_operator
+
+[2015-10-30 11:51:13.055] [006348] [local] [PGSQL]
+SELECT c.oid, c.conname, c.contype, c.condeferrable, c.condeferred, c.conkey, c.confupdtype, c.confdeltype, c.consrc, t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, ts.spcname, i.reloptions AS param, am.amname, c.conexclop, pg_get_expr(ci.indpred, ci.indexrelid, true) where_predicate, obj_description(c.oid) AS comment FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) LEFT JOIN pg_class i ON (c.conname = i.relname) AND (c.connamespace = i.relnamespace) LEFT JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) LEFT JOIN pg_tablespace ts ON (i.reltablespace = ts.oid) LEFT JOIN pg_am am ON (i.relam = am.oid) LEFT JOIN pg_index ci ON (c.conindid = ci.indexrelid) WHERE ns.nspname = 'public' AND t.relname = 'teachingaid_image' ORDER BY t.relname, i.oid
+
+[2015-10-30 11:51:13.064] [006348] [local] [PGSQL]
+SELECT t.relname, fns.nspname AS foreign_schema, f.relname AS foreign_table, c.conname, c.confkey, a.attname AS foreign_field, a.attnum FROM pg_constraint c LEFT JOIN pg_namespace ns ON (c.connamespace = ns.oid) LEFT JOIN pg_class t ON (c.conrelid = t.oid) INNER JOIN pg_class f ON (c.confrelid = f.oid) LEFT JOIN pg_namespace fns ON (f.relnamespace = fns.oid) INNER JOIN pg_attribute a ON (a.attrelid = f.oid) WHERE a.attnum > 0 AND ns.nspname = 'public' AND t.relname = 'teachingaid_image' ORDER BY t.relname, c.conname, a.attnum
+
+[2015-10-30 11:51:13.102] [008132] [local] [PGSQL]
+SELECT * FROM "public"."teachingaid_image" LIMIT 1000 OFFSET 0
+
+[2015-10-30 11:51:13.103] [008132] [local] [PGSQL]
+SELECT c.conkey FROM pg_constraint c WHERE c.contype='p' AND c.conrelid = 74049
+
+[2015-10-30 11:52:21.679] [005648] [local] [PGSQL]
+SELECT * FROM "public"."teachingaid_filepath" LIMIT 1000 OFFSET 0
+
+[2015-10-30 11:52:21.679] [005648] [local] [PGSQL]
+SELECT c.conkey FROM pg_constraint c WHERE c.contype='p' AND c.conrelid = 74046
+
+[2015-10-30 11:52:23.327] [008068] [local] [PGSQL]
+SELECT * FROM "public"."filepath" LIMIT 1000 OFFSET 0
+
+[2015-10-30 11:52:23.327] [008068] [local] [PGSQL]
+SELECT c.conkey FROM pg_constraint c WHERE c.contype='p' AND c.conrelid = 74000
+
+[2015-10-30 11:52:23.765] [008068] [local] [PGSQL]
+SELECT * FROM "public"."filepath" LIMIT 1000 OFFSET 0
+
+[2015-10-30 11:52:23.766] [008068] [local] [PGSQL]
+SELECT c.conkey FROM pg_constraint c WHERE c.contype='p' AND c.conrelid = 74000
+

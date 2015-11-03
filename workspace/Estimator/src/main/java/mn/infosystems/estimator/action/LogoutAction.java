@@ -12,7 +12,7 @@ import org.apache.struts2.interceptor.validation.SkipValidation;
 import com.opensymphony.xwork2.ActionSupport;
 
 @InterceptorRefs({ @InterceptorRef("basicStack") })
-@Namespaces(value = { @Namespace("/admin"), @Namespace("/operator"),@Namespace("/senior"),@Namespace("/user") })
+@Namespaces(value = { @Namespace("/admin"),@Namespace("/employee"),@Namespace("/user") })
 
 public class LogoutAction extends ActionSupport {
 

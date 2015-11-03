@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
-  <display-name>Estimator</display-name>  
+  <display-name>Estimator</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
@@ -15,7 +15,7 @@
   <listener>
     <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
   </listener>
-   <filter>
+  <filter>
     <filter-name>ResponseOverrideFilter</filter-name>
     <filter-class> 
             org.displaytag.filter.ResponseOverrideFilter 
@@ -58,7 +58,8 @@
     <exception-type>java.lang.Throwable</exception-type>
     <location>/login/error.jsp</location>
   </error-page>
-  <security-role>
+  <!-- jetty run start  -->
+  <!-- <security-role>
     <description>administrator access</description>
     <role-name>admin-role</role-name>
   </security-role>
@@ -97,8 +98,8 @@
       <web-resource-name>Unprotected area</web-resource-name>
       <url-pattern>/favicon.ico</url-pattern>
     </web-resource-collection>
-  </security-constraint>
-<!--    <login-config>
+  </security-constraint> -->
+  <!--  <login-config>
     <auth-method>FORM</auth-method>
     <realm-name>EstimatorRealm</realm-name>
     <form-login-config>
@@ -106,9 +107,12 @@
       <form-error-page>/login/login.jsp?result=false</form-error-page>
     </form-login-config>
   </login-config> -->
-  <!--  <servlet>
-		<servlet-name>oracleCon</servlet-name>
-		<servlet-class>mn.infosystems.estimator.action.OracleCon</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet> -->
+	<!-- jetty run end -->
+	<!--  tomcat run start -->
+	<login-config>
+	  <auth-method>BASIC</auth-method>
+	  <realm-name>EstimatorRealm</realm-name>
+	</login-config>
+	
+    <!--tomcat run end  -->
 </web-app>

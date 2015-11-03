@@ -3,7 +3,6 @@ package mn.infosystems.estimator.action;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.JOptionPane;
 
 import mn.infosystems.estimator.model.CarFactory;
 import mn.infosystems.estimator.service.CarFactoryService;
@@ -24,7 +23,7 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
 		@InterceptorRef("paramsPrepareParamsStack") })
-@Namespaces(value = { @Namespace("/admin") })
+@Namespaces(value = { @Namespace("/admin"),@Namespace("/employee") })
 public class CarFactoryAction extends ActionSupport implements Preparable,
 		ModelDriven<CarFactory>, ServletRequestAware {
 

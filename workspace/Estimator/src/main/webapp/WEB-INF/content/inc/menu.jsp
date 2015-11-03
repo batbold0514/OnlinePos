@@ -30,26 +30,27 @@
 			<li id="infoBoard"><a href="info-board"><i
 					class="fa fa-list"></i> <s:text name="infoBoard" /></a></li>
 		</ul></li>
-	<li class=""><a href="#"><i class="fa fa-bar-chart-o"></i><span
+	<%
+		if(request.isUserInRole("admin-role") || request.isUserInRole("emp-role")){
+	%>
+		<li class=""><a href="#"><i class="fa fa-bar-chart-o"></i><span
 			class="title"> <s:text name="report" /></span><span class="arrow"></span>
 			<span class="selectedd"></span> </a>
 		<ul class="sub-menu">
-		<%
-			if(request.isUserInRole("admin-role") || request.isUserInRole("emp-role")){
-		%>
+		
 			<li id="empReport"><a href="emp-report"><i
 					class="fa fa-th-list"></i> <s:text name="empReport" /></a></li>
-		<%
-			}
-		%>
+		
 		</ul></li>
-	<li class=""><a href="#"><i class="fa fa-bar-chart-o"></i><span
+	<%
+		}
+		if(request.isUserInRole("admin-role") || request.isUserInRole("emp-role")){
+	%>
+		<li class=""><a href="#"><i class="fa fa-bar-chart-o"></i><span
 			class="title"> <s:text name="reference" /></span><span class="arrow"></span><span
 			class="selectedd"></span> </a>
 		<ul class="sub-menu">
-		<%
-			if(request.isUserInRole("admin-role") || request.isUserInRole("emp-role")){
-		%>
+		
 			<li id="employee"><a href="employee-list"><i
 					class="fa fa-group"></i> <s:text name="employee" /></a></li>
 			<li id="carfactory"><a href="car-factory"><i
@@ -60,11 +61,10 @@
 					class="fa fa-gears"></i> <s:text name="breakedPart" /></a></li>
 			<li id="company"><a href="company"><i class="fa fa-home"></i>
 					<s:text name="company" /></a></li>
-		<%
-			}		
-		%>
+		
 		</ul></li>
 	<%
+		}		
 		if (request.isUserInRole("admin-role")) {
 	%>
 	<li class=""><a href="#"><i class="fa fa-cogs"></i><span

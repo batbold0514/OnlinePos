@@ -1,15 +1,12 @@
 package mn.infosystems.estimator.action;
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.JOptionPane;
 
 import mn.infosystems.estimator.model.Customer;
-import mn.infosystems.estimator.model.EmpReportModel;
 import mn.infosystems.estimator.model.Employee;
 import mn.infosystems.estimator.model.EmployeeReportModel;
 import mn.infosystems.estimator.service.CustomerService;
@@ -19,16 +16,23 @@ import mn.infosystems.estimator.service.PostgreConectionService;
 import mn.infosystems.estimator.service.UsersService;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
+import org.apache.struts2.convention.annotation.InterceptorRefs;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Namespaces;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-
+@InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
+	@InterceptorRef("paramsPrepareParamsStack") })
+@Namespaces(value = { @Namespace("/admin"),@Namespace("/employee")})
 public class ReportAction extends ActionSupport implements ServletRequestAware,SessionAware{
 	
 	private static final long serialVersionUID = 1L;
 	private CustomerService customerService;
+	@SuppressWarnings("unused")
 	private List<Customer> list;
 	private String firstDate = EstimaterStaticFunctions.dateToStr(new Date());
 	private String secondDate = EstimaterStaticFunctions.dateToStr(new Date());

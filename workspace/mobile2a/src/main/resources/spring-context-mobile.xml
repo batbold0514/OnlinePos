@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="annotatedClasses">
+			<list>
+				<value>mn.infosystems.mobile.model.Users</value>
+				<value>mn.infosystems.mobile.model.Role</value>
+				<value>mn.infosystems.mobile.model.Image</value>
+				<value>mn.infosystems.mobile.model.TextUpload</value>
+				<value>mn.infosystems.mobile.model.SubGroup</value>
+				<value>mn.infosystems.mobile.model.TeachingAid</value>
+				<value>mn.infosystems.mobile.model.SoundFilePath</value>
+				<value>mn.infosystems.mobile.model.VideoFilePath</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		autowire="byName" />
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<bean id="sessionProvider" class="mn.infosystems.mobile.helper.SessionProvider"		autowire="byName" />
+	<bean id="usersService" class="mn.infosystems.mobile.service.UsersService"		autowire="byName" />
+	<bean id="roleService" class="mn.infosystems.mobile.service.RoleService"		autowire="byName" />
+	<bean id="imageService" class="mn.infosystems.mobile.service.ImageService"		autowire="byName" />
+	<bean id="textUploadService" class="mn.infosystems.mobile.service.TextUploadService"		autowire="byName" />
+	<bean id="subGroupService" class="mn.infosystems.mobile.service.SubGroupService"		autowire="byName" />
+	<bean id="teachingAidService" class="mn.infosystems.mobile.service.TeachingAidService"		autowire="byName" />
+	<bean id="soundFilePathService" class="mn.infosystems.mobile.service.SoundFilePathService"		autowire="byName" />
+	<bean id="videoFilePathService" class="mn.infosystems.mobile.service.VideoFilePathService"		autowire="byName" />
+</beans>

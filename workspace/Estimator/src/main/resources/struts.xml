@@ -8,12 +8,12 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.convention.classes.reload" value="false" />
 	<constant name="struts.convention.default.parent.package"
-		value="callcenter-default" />
+		value="estimator-default" />
 	<constant name="struts.custom.i18n.resources" value="estimator" />
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.multipart.maxSize" value="52428800" />
 
-	<package name="callcenter-default" extends="struts-default">
+	<package name="estimator-default" extends="struts-default">
 		<result-types>
 			<result-type name="tiles"
 				class="org.apache.struts2.views.tiles.TilesResult" />
@@ -23,15 +23,12 @@
 			<interceptor name="transactionInterceptor"
 				class="mn.infosystems.estimator.interceptor.TransactionalSessionInterceptor" />
 
-			<interceptor-stack name="defaultCallcenterStack">
+			<interceptor-stack name="defaultEstimator">
 				<interceptor-ref name="transactionInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
 
-		<default-interceptor-ref name="defaultCallcenterStack" />
-		<action name="usersList">
-			<result type="tiles">/admin-home-page.tiles</result>
-		</action>
+		<default-interceptor-ref name="defaultEstimatorStack" />
 	</package>
 </struts>

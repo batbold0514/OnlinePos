@@ -3,15 +3,19 @@ package mn.infosystems.estimator.action;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import mn.infosystems.estimator.model.Messages;
 import mn.infosystems.estimator.model.Role;
+import mn.infosystems.estimator.model.Trole;
+import mn.infosystems.estimator.model.Tuser;
 import mn.infosystems.estimator.model.Users;
 import mn.infosystems.estimator.service.RoleService;
 import mn.infosystems.estimator.service.EstimateLoggerService;
+import mn.infosystems.estimator.service.TuserService;
 import mn.infosystems.estimator.service.UsersService;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -45,6 +49,7 @@ public class UsersAction extends ActionSupport implements Preparable,
 	private String roleString;
 	private HttpServletRequest request;
 	private String statusString;
+	private TuserService tuserService;
 
 	@VisitorFieldValidator(message = "", appendPrefix = false)
 	public Users getModel() {
@@ -113,10 +118,23 @@ public class UsersAction extends ActionSupport implements Preparable,
 				}
 				if (check)
 					return INPUT;
+				Tuser tuser = new Tuser();
+				tuser.setUser_name(user.getUserName());
+				tuser.setUser_pass(user.getPwd());
+				List<Trole> role = new LinkedList<Trole>();
+				Trole r = new Trole();
+				r.setRole_name(roleString);
+				role.add(r);
+				tuser.setRoles(role);
 				user.setRole(roleService.getRole(roleString));
 				user.setPwd(MD5(user.getPwd()));
 				usersService.saveOrUpdate(user);
 				request.setAttribute("successUser", "true");
+				try{
+					tuserService.saveOrUpdate(tuser);
+				}catch(Exception e){
+					
+				}
 				EstimateLoggerService.writeLog(user);
 				return SUCCESS;
 			}
@@ -182,7 +200,7 @@ public class UsersAction extends ActionSupport implements Preparable,
 		MessageDigest md;
 		md = MessageDigest.getInstance("MD5");
 		byte[] md5 = new byte[64];
-		md.update(text.getBytes("iso-8859-1"), 0, text.length());
+		md.update(text.getBytes("UTF-8"), 0, text.length());
 		md5 = md.digest();
 		return "MD5:" + convertedToHex(md5);
 	}
@@ -207,5 +225,11 @@ public class UsersAction extends ActionSupport implements Preparable,
 	public void setStatusString(String statusString) {
 		this.statusString = statusString;
 	}
+
+	public void setTuserService(final TuserService tuserService) {
+		this.tuserService = tuserService;
+	}
+
+	
 
 }

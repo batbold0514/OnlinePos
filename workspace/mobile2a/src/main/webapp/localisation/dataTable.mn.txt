@@ -1,0 +1,19 @@
+{
+	"sSearch" : "Хайх:",
+	"sShow": "Харах",
+    "oPaginate": {
+        "sFirst": "Эхний ",
+        "sPrevious": "Өмнөх", 
+        "sNext": "Дараах",
+        "sLast": "Сүүлийн"
+       
+    },
+    "sEmptyTable": "Өгөгдөл байхгүй байна",
+	"sInfoEmpty": "0 өгөгдөл харагдаж байна",
+	"sInfo": "_START_ -с  _END_ нийт _TOTAL_ байна ",
+	"sLengthMenu": "_MENU_ Харах боломжтой",
+	"sZeroRecords": "Ямар ч өгөгдөл олдсонгүй",
+	"sInfoFiltered": "(Нийт  _MAX_ өгөгдөл байна)",
+	"sLoadingRecords": "ачаалалж байна...",
+	"sProcessing": "Боловсруулж..."
+}

@@ -1,5 +1,5 @@
 #jdbcdriver = org.postgresql.Driver
-#url = jdbc:postgresql://localhost:5432/callcenter
+#url = jdbc:postgresql://localhost:5432/estimator
 #username = postgres
 #password = 123asd90@
 
@@ -12,4 +12,4 @@ usertablekey = id
 usertableuserfield = username
 usertablepasswordfield = pwd
 cachetime = 300
-databasename = callcenter
+databasename = estimator

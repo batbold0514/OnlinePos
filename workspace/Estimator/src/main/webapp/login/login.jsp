@@ -1,3 +1,4 @@
+<%@page import="mn.infosystems.estimator.model.Messages"%>
 <%@ page import="mn.chinbat.interceptor.SessionInterceptor"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -10,10 +11,10 @@
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
-		<link href="../css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="../css/font-awesome.min.css" />
-		<link rel="stylesheet" href="../css/ace-fonts.css" />
-		<link rel="stylesheet" href="../css/ace.min.css" />
+		<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../css/ace-fonts.css" />
+		<link rel="stylesheet" href="../../css/ace.min.css" />
 		<style>
 			html, body
 			{
@@ -61,8 +62,7 @@
 														result = "";
 													if (result.equalsIgnoreCase("false")) {
 											%>
-											<span style="color: red"><s:text
-													name="wrong Name Or Password" /><br> </span>
+											<span style="color: red"><%out.print(Messages.getString("wrongNameOrPassword")); %></span> 
 											<%
 												}
 											%>
@@ -222,11 +222,11 @@
 	
 		<!--[if !IE]> -->
 	
-		<script type="text/javascript">
+		<%-- <script type="text/javascript">
 			window.jQuery
 					|| document.write("<script src='../js/jquery-2.0.3.min.js'>"
 							+ "<"+"/script>");
-		</script>
+		</script> --%>
 	
 		<!-- <![endif]-->
 	

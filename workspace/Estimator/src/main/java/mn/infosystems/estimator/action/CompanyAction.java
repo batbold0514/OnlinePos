@@ -22,7 +22,7 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
 		@InterceptorRef("paramsPrepareParamsStack") })
-@Namespaces(value = { @Namespace("/admin") })
+@Namespaces(value = { @Namespace("/admin") ,@Namespace("/employee")})
 public class CompanyAction extends ActionSupport implements Preparable,
 		ModelDriven<Company>, ServletRequestAware {
 

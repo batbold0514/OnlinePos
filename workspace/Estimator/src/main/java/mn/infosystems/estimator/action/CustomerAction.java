@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.JOptionPane;
 
 import mn.infosystems.estimator.enums.CarType;
 import mn.infosystems.estimator.enums.Confirm;
@@ -47,7 +46,6 @@ import org.apache.struts2.convention.annotation.Namespaces;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -56,12 +54,13 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
 	@InterceptorRef("paramsPrepareParamsStack") })
-@Namespaces(value = { @Namespace("/admin") })
+@Namespaces(value = { @Namespace("/admin"),@Namespace("/user") ,@Namespace("/employee")})
 public class CustomerAction extends ActionSupport implements Preparable,ModelDriven<Customer>,ServletRequestAware,SessionAware{
 
 	private static final long serialVersionUID = 1L;
 	private Customer customer = new Customer();
 	private List<Customer> customerList;
+	@SuppressWarnings("unused")
 	private int customerHash;
 	private CustomerService customerService;
 	private CarFactoryService carFactoryService;
@@ -338,7 +337,6 @@ public class CustomerAction extends ActionSupport implements Preparable,ModelDri
 		session.put("costList", costList);
 		return SUCCESS;
 	}
-	@SkipValidation
 	@SuppressWarnings("unchecked")
 	@Action(value="customer-save",results={@Result(name="success",location="/WEB-INF/content/ajax/customer/customer-result.jsp"),
 			@Result(name="input",location="/WEB-INF/content/ajax/customer/customer-result.jsp")})
@@ -349,8 +347,6 @@ public class CustomerAction extends ActionSupport implements Preparable,ModelDri
 			if(customer.getId() != null){
 				Customer c = (Customer) session.get("customer");
 				customer.setConfirm(c.getConfirm());
-			}else{
-				customer.setConfirm(Confirm.unapproved);
 			}
 			customer.setImageOfList(imageList);
 			if(customer.getCnumber().equals("")){
@@ -512,10 +508,8 @@ public class CustomerAction extends ActionSupport implements Preparable,ModelDri
 				addFieldError("regnumberEdit", Messages.getString("cnumber"));
 				check = false;
 			}
-			
 			if(check){
 				defectList = (List<Defect>) session.get("defectList");
-				JOptionPane.showMessageDialog(null, defectList.size());
 				for(Defect d:defectList){
 					defectService.saveOrUpdate(d);
 				}
@@ -615,11 +609,9 @@ public class CustomerAction extends ActionSupport implements Preparable,ModelDri
 	}
 	@Action(value= "brokenPartChangeEdit" , results = {@Result(name = "success", location = "/WEB-INF/content/ajax/customer/brokenPartChangeEdit.jsp")})
 	public String brokenPartChangeEdit(){
-		JOptionPane.showMessageDialog(null, "");
 		if(breakedPartService.checkName(brokenPartStr)){
 			BreakedPart b = new BreakedPart();
 			b.setPartName(brokenPartStr);
-			JOptionPane.showMessageDialog(null, "1");
 			breakedPartService.save(b);
 			session.put("brokenPartId", b.getId());
 		}else{

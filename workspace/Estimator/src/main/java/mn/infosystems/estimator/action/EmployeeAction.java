@@ -27,7 +27,7 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
 	@InterceptorRef("paramsPrepareParamsStack") })
-@Namespaces(value = { @Namespace("/admin") })
+@Namespaces(value = { @Namespace("/admin") ,@Namespace("/employee")})
 public class EmployeeAction extends ActionSupport implements Preparable,
 		ModelDriven<Employee>, ServletRequestAware {
 
@@ -44,6 +44,7 @@ public class EmployeeAction extends ActionSupport implements Preparable,
 	private List<Users> usersList;
 	
 	@SkipValidation
+	
 	@Action(value = "employee-list", results = { @Result(name = "success", type = "tiles", location = "/employee-list.tiles") })
 	public String list() throws Exception{
 		this.employeeList = employeeService.findAll();

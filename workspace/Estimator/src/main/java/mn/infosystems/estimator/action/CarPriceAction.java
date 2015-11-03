@@ -31,7 +31,7 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
 		@InterceptorRef("paramsPrepareParamsStack") })
-@Namespaces(value = { @Namespace("/admin") })
+@Namespaces(value = { @Namespace("/admin") ,@Namespace("/employee")})
 public class CarPriceAction extends ActionSupport implements Preparable,
 		ModelDriven<CarPrice>, ServletRequestAware {
 

@@ -4,6 +4,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import mn.infosystems.estimator.model.CarFactory;
+import mn.infosystems.estimator.model.CarMark;
+import mn.infosystems.estimator.service.CarFactoryService;
+import mn.infosystems.estimator.service.CarMarkService;
+import mn.infosystems.estimator.service.EstimateLoggerService;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
@@ -12,12 +18,6 @@ import org.apache.struts2.convention.annotation.Namespaces;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import mn.infosystems.estimator.model.CarFactory;
-import mn.infosystems.estimator.model.CarMark;
-import mn.infosystems.estimator.service.CarFactoryService;
-import mn.infosystems.estimator.service.CarMarkService;
-import mn.infosystems.estimator.service.EstimateLoggerService;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
 		@InterceptorRef("paramsPrepareParamsStack") })
-@Namespaces(value = { @Namespace("/admin") })
+@Namespaces(value = { @Namespace("/admin") ,@Namespace("/employee")})
 public class CarMarkAction extends ActionSupport implements Preparable,
 		ModelDriven<CarMark>, ServletRequestAware {
 

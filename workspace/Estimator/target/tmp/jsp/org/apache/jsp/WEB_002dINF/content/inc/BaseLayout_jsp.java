@@ -237,7 +237,7 @@ public final class BaseLayout_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\tsrc=\"../assets/plugins/jquery.pulsate.min.js\"></script>\r\n");
       out.write("\r\n");
       out.write("<script src=\"../js/metronic.js\"></script>\r\n");
-      out.write("<link href=\"../../assets/css/components.css\" id=\"style_components\"\r\n");
+      out.write("<link href=\"../assets/css/components.css\" id=\"style_components\"\r\n");
       out.write("\trel=\"stylesheet\" type=\"text/css\" />\r\n");
       out.write("<script src=\"../js/autocomplete/selectize.js\" type=\"text/javascript\"></script>\r\n");
       out.write("<script src=\"../js/autocomplete/index.js\" type=\"text/javascript\"></script>\r\n");

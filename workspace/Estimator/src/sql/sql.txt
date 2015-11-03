@@ -4,22 +4,32 @@ insert into role values (1, 'admin-role');
 insert into role values (2, 'emp-role');
 insert into role values (3, 'user-role');
 insert into users_role values (1,1);
+insert into tuser values('admin','password');
+insert into trole values ('admin-role');
+insert into trole values ('emp-role');
+insert into trole values ('user-role');
+insert into tuser_trole values ('admin','admin-role');
 
-//postgre
+
+
 
 CREATE OR REPLACE FUNCTION customer_price_change()
   RETURNS trigger AS
 $BODY$DECLARE      changeprice_new int;
  DECLARE      repairprice_new int;
  BEGIN
-
-		if((select count(*) from customer_defect where customer_id = new.customer_id )!=0) then
-			changeprice_new = (select sum(changeprice) from defect where id in (select defectlist_id from customer_defect where customer_id = new.customer_id));
-			update customer set changeprice = changeprice_new where id = new.customer_id and (changeprice is null or changeprice != changeprice_new);
-			repairprice_new = (select sum(repairprice) from defect where id in (select defectlist_id from customer_defect where customer_id = new.customer_id));
-			update customer set repairprice = repairprice_new where id = new.customer_id and (repairprice is null or repairprice != repairprice_new);
-
+	IF (TG_OP = 'UPDATE') THEN
+		if((select count(*) from customer_defect where customer_id = new.id )!=0) then
+			changeprice_new = (select sum(changeprice) from defect where id in (select defectlist_id from customer_defect where customer_id = new.id));
+			update customer set changeprice = changeprice_new where id = new.id and (changeprice is null or changeprice != changeprice_new);
+			repairprice_new = (select sum(repairprice) from defect where id in (select defectlist_id from customer_defect where customer_id = new.id));
+			update customer set repairprice = repairprice_new where id = new.id and (repairprice is null or repairprice != repairprice_new);
 		end if;
+		
+	END IF;
+	IF (TG_OP = 'INSERT') THEN
+			
+	END IF;
 	RETURN NULL;
 
 END;$BODY$
@@ -29,34 +39,10 @@ ALTER FUNCTION customer_price_change()
   OWNER TO postgres;
 
 
-
 CREATE TRIGGER change_price_trigger
-  AFTER INSERT
-  ON customer_defect
+  AFTER INSERT OR UPDATE
+  ON customer
   FOR EACH ROW
   EXECUTE PROCEDURE customer_price_change();
 
- 
- //mysql
- 
-DELIMITER $$
-DROP TRIGGER change_price_trigger$$
-CREATE TRIGGER change_price_trigger
-  AFTER INSERT
-  ON customer_defect
-  FOR EACH ROW
-
-BEGIN
-DECLARE changeprice_new bigint(20);
-DECLARE repairprice_new bigint(20);
-
-		if((select count(*) from customer_defect where customer_id = new.customer_id )!=0) then
-			set changeprice_new = (select sum(changeprice) from defect where id in (select defectlist_id from customer_defect where customer_id = new.customer_id));
-			update customer set changeprice = changeprice_new where id = new.customer_id and (changeprice is null or changeprice != changeprice_new);
-			set repairprice_new = (select sum(repairprice) from defect where id in (select defectlist_id from customer_defect where customer_id = new.customer_id));
-			update customer set repairprice = repairprice_new where id = new.customer_id and (repairprice is null or repairprice != repairprice_new);
-
-		end if;
-end $$
-DELIMITER ;
 

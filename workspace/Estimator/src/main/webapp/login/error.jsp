@@ -98,11 +98,11 @@ if(null == exception){
 	<!-- /.main-content -->
 
 
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		window.jQuery
 				|| document.write("<script src='../js/jquery-2.0.3.min.js'>"
 						+ "<"+"/script>");
-	</script>
+	</script> -->
 
 
 	<script type="text/javascript">

@@ -1,0 +1,13 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+  <Get name="securityHandler">
+    <Set name="loginService">
+      <New class="org.eclipse.jetty.security.JDBCLoginService">
+		  <Set name="name">Test Realm</Set>
+		  <Set name="config">${basedir}/src/test/resources/jdbcRealm.properties</Set>
+		</New>
+    </Set>
+  </Get>
+</Configure> -->
+ 

@@ -107,41 +107,40 @@ public final class menu_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write("</a></li>\n");
       out.write("\t\t</ul></li>\n");
-      out.write("\t<li class=\"\"><a href=\"#\"><i class=\"fa fa-bar-chart-o\"></i><span\n");
+      out.write("\t");
+
+		if(request.isUserInRole("admin-role") || request.isUserInRole("emp-role")){
+	
+      out.write("\n");
+      out.write("\t\t<li class=\"\"><a href=\"#\"><i class=\"fa fa-bar-chart-o\"></i><span\n");
       out.write("\t\t\tclass=\"title\"> ");
       if (_jspx_meth_s_text_7(_jspx_page_context))
         return;
       out.write("</span><span class=\"arrow\"></span>\n");
       out.write("\t\t\t<span class=\"selectedd\"></span> </a>\n");
       out.write("\t\t<ul class=\"sub-menu\">\n");
-      out.write("\t\t");
-
-			if(request.isUserInRole("admin-role") || request.isUserInRole("emp-role")){
-		
-      out.write("\n");
+      out.write("\t\t\n");
       out.write("\t\t\t<li id=\"empReport\"><a href=\"emp-report\"><i\n");
       out.write("\t\t\t\t\tclass=\"fa fa-th-list\"></i> ");
       if (_jspx_meth_s_text_8(_jspx_page_context))
         return;
       out.write("</a></li>\n");
-      out.write("\t\t");
-
-			}
-		
-      out.write("\n");
+      out.write("\t\t\n");
       out.write("\t\t</ul></li>\n");
-      out.write("\t<li class=\"\"><a href=\"#\"><i class=\"fa fa-bar-chart-o\"></i><span\n");
+      out.write("\t");
+
+		}
+		if(request.isUserInRole("admin-role") || request.isUserInRole("emp-role")){
+	
+      out.write("\n");
+      out.write("\t\t<li class=\"\"><a href=\"#\"><i class=\"fa fa-bar-chart-o\"></i><span\n");
       out.write("\t\t\tclass=\"title\"> ");
       if (_jspx_meth_s_text_9(_jspx_page_context))
         return;
       out.write("</span><span class=\"arrow\"></span><span\n");
       out.write("\t\t\tclass=\"selectedd\"></span> </a>\n");
       out.write("\t\t<ul class=\"sub-menu\">\n");
-      out.write("\t\t");
-
-			if(request.isUserInRole("admin-role") || request.isUserInRole("emp-role")){
-		
-      out.write("\n");
+      out.write("\t\t\n");
       out.write("\t\t\t<li id=\"employee\"><a href=\"employee-list\"><i\n");
       out.write("\t\t\t\t\tclass=\"fa fa-group\"></i> ");
       if (_jspx_meth_s_text_10(_jspx_page_context))
@@ -167,14 +166,11 @@ public final class menu_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_meth_s_text_14(_jspx_page_context))
         return;
       out.write("</a></li>\n");
-      out.write("\t\t");
-
-			}		
-		
-      out.write("\n");
+      out.write("\t\t\n");
       out.write("\t\t</ul></li>\n");
       out.write("\t");
 
+		}		
 		if (request.isUserInRole("admin-role")) {
 	
       out.write("\n");

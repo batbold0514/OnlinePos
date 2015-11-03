@@ -7,12 +7,17 @@ import mn.infosystems.estimator.model.Customer;
 import mn.infosystems.estimator.service.CustomerService;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
+import org.apache.struts2.convention.annotation.InterceptorRefs;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Namespaces;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
-import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import com.opensymphony.xwork2.ActionSupport;
-
+@InterceptorRefs({ @InterceptorRef("transactionInterceptor"),
+	@InterceptorRef("paramsPrepareParamsStack") })
+@Namespaces(value = { @Namespace("/admin"),@Namespace("/employee"),@Namespace("/user") })
 public class NumberSearchAction extends ActionSupport implements SessionAware{
 
 	private static final long serialVersionUID = 1L;

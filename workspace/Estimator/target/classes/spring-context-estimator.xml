@@ -12,6 +12,8 @@ http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 			<list>
 				<value>mn.infosystems.estimator.model.Users</value>
 				<value>mn.infosystems.estimator.model.Role</value>
+				<value>mn.infosystems.estimator.model.Tuser</value>
+				<value>mn.infosystems.estimator.model.Trole</value>
 				<value>mn.infosystems.estimator.model.CarFactory</value>
 				<value>mn.infosystems.estimator.model.CarMark</value>
 				<value>mn.infosystems.estimator.model.Car</value>
@@ -43,6 +45,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 	<bean id="usersService" class="mn.infosystems.estimator.service.UsersService"
 		autowire="byName" />
 	<bean id="roleService" class="mn.infosystems.estimator.service.RoleService"
+		autowire="byName" />
+	<bean id="tuserService" class="mn.infosystems.estimator.service.TuserService"
+		autowire="byName" />
+	<bean id="TroleService" class="mn.infosystems.estimator.service.TroleService"
 		autowire="byName" />
 	<!-- <bean id="sessionInterceptor" class="mn.chinbat.interceptor.SessionInterceptor" 
 		autowire="byName"/> -->
@@ -76,4 +82,5 @@ http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		autowire="byName" />
 	<bean id="costService" class="mn.infosystems.estimator.service.CostService"
 		autowire="byName" />
+
 </beans>
