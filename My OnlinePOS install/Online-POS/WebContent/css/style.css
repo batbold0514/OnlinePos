@@ -347,3 +347,16 @@ input.ace.ace-switch[type="checkbox"] + .lbl
 {
  	margin-left: 8px !important;
 }
+
+input { border: 1px solid black; margin-bottom: .5em;  }
+input.error { border: 1px solid red; }
+label.error {
+	padding-left: 16px;
+	margin-left: .3em;
+	color: red;
+}
+label.valid {	
+	display: block;
+	width: 16px;
+	height: 16px;
+}
